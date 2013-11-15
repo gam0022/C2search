@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface C2searchViewController : UIViewController
+@interface C2searchViewController : UIViewController <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *queryText;
 
 @end

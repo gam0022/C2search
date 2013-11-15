@@ -21,6 +21,7 @@
 		A5E0B3CC1835D30D00D2CBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AE1835D30C00D2CBC4 /* UIKit.framework */; };
 		A5E0B3D41835D30D00D2CBC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E0B3D21835D30D00D2CBC4 /* InfoPlist.strings */; };
 		A5E0B3D61835D30D00D2CBC4 /* C2searchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B3D51835D30D00D2CBC4 /* C2searchTests.m */; };
+		A5E0B3E11835D47E00D2CBC4 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0B3E01835D47E00D2CBC4 /* ResultViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		A5E0B3D11835D30D00D2CBC4 /* C2searchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "C2searchTests-Info.plist"; sourceTree = "<group>"; };
 		A5E0B3D31835D30D00D2CBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5E0B3D51835D30D00D2CBC4 /* C2searchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = C2searchTests.m; sourceTree = "<group>"; };
+		A5E0B3DF1835D47E00D2CBC4 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		A5E0B3E01835D47E00D2CBC4 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				A5E0B3BC1835D30C00D2CBC4 /* Main.storyboard */,
 				A5E0B3BF1835D30C00D2CBC4 /* C2searchViewController.h */,
 				A5E0B3C01835D30C00D2CBC4 /* C2searchViewController.m */,
+				A5E0B3DF1835D47E00D2CBC4 /* ResultViewController.h */,
+				A5E0B3E01835D47E00D2CBC4 /* ResultViewController.m */,
 				A5E0B3C21835D30C00D2CBC4 /* Images.xcassets */,
 				A5E0B3B11835D30C00D2CBC4 /* Supporting Files */,
 			);
@@ -253,6 +258,7 @@
 				A5E0B3B71835D30C00D2CBC4 /* main.m in Sources */,
 				A5E0B3BB1835D30C00D2CBC4 /* C2searchAppDelegate.m in Sources */,
 				A5E0B3C11835D30C00D2CBC4 /* C2searchViewController.m in Sources */,
+				A5E0B3E11835D47E00D2CBC4 /* ResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

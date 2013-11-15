@@ -7,6 +7,7 @@
 //
 
 #import "C2searchViewController.h"
+#import "ResultViewController.h"
 
 @interface C2searchViewController ()
 
@@ -18,6 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.queryText.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -25,5 +27,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [self.view endEditing:YES];
+    return YES;
+}
+
+- (IBAction)search:(id)sender {
+    [self performSegueWithIdentifier:@"ResultSegue" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AnswerSegue"]) {
+        //遷移先のViewControllerインスタンスを取得
+        ResultViewController *rvc = segue.destinationViewController;
+        NSString *query = self.queryText.text;
+        rvc.query = query;
+    }
+}
+
 
 @end
