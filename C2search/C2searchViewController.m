@@ -38,7 +38,7 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"AnswerSegue"]) {
+    if ([segue.identifier isEqualToString:@"ResultSegue"]) {
         //遷移先のViewControllerインスタンスを取得
         ResultViewController *rvc = segue.destinationViewController;
         NSString *query = self.queryText.text;

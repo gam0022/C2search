@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultViewController : UITableViewController
+
+@interface ResultViewController : UITableViewController {
+    NSMutableArray *results;
+    //NSDictionary *results;
+}
 @property (nonatomic) NSString *query;
+
++(NSMutableArray*)getYahooResult: (NSString *)query_escaped;
+
 @end
