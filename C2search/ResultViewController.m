@@ -27,8 +27,7 @@
 
 +(NSMutableArray*)getYahooResult: (NSString *)query_escaped
 {
-    NSString *appid = @"dj0zaiZpPXJJR1hWVUZXeTY5biZzPWNvbnN1bWVyc2VjcmV0Jng9NGQ-";
-    NSString *yahoo_url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@",appid, query_escaped];
+    NSString *yahoo_url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@",appidYahoo, query_escaped];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:yahoo_url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request

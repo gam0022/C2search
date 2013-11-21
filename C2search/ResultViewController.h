@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Const.h"
 
 @interface ResultViewController : UITableViewController {
     NSMutableArray *results;
-    //NSDictionary *results;
 }
 @property (nonatomic) NSString *query;
 

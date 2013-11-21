@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A51790E9183CF66100E992D6 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = A51790E8183CF66100E992D6 /* Result.m */; };
+		A51790EE183D9B0C00E992D6 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = A51790ED183D9B0C00E992D6 /* Const.m */; };
 		A5E0B3AB1835D30C00D2CBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AA1835D30C00D2CBC4 /* Foundation.framework */; };
 		A5E0B3AD1835D30C00D2CBC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AC1835D30C00D2CBC4 /* CoreGraphics.framework */; };
 		A5E0B3AF1835D30C00D2CBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AE1835D30C00D2CBC4 /* UIKit.framework */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A51790E7183CF66100E992D6 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		A51790E8183CF66100E992D6 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
+		A51790EC183D9B0C00E992D6 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		A51790ED183D9B0C00E992D6 /* Const.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
 		A5E0B3A71835D30C00D2CBC4 /* C2search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C2search.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B3AA1835D30C00D2CBC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5E0B3AC1835D30C00D2CBC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +128,10 @@
 				A5E0B3C01835D30C00D2CBC4 /* C2searchViewController.m */,
 				A5E0B3DF1835D47E00D2CBC4 /* ResultViewController.h */,
 				A5E0B3E01835D47E00D2CBC4 /* ResultViewController.m */,
+				A51790E7183CF66100E992D6 /* Result.h */,
+				A51790E8183CF66100E992D6 /* Result.m */,
+				A51790EC183D9B0C00E992D6 /* Const.h */,
+				A51790ED183D9B0C00E992D6 /* Const.m */,
 				A5E0B3C21835D30C00D2CBC4 /* Images.xcassets */,
 				A5E0B3B11835D30C00D2CBC4 /* Supporting Files */,
 			);
@@ -257,6 +267,8 @@
 			files = (
 				A5E0B3B71835D30C00D2CBC4 /* main.m in Sources */,
 				A5E0B3BB1835D30C00D2CBC4 /* C2searchAppDelegate.m in Sources */,
+				A51790E9183CF66100E992D6 /* Result.m in Sources */,
+				A51790EE183D9B0C00E992D6 /* Const.m in Sources */,
 				A5E0B3C11835D30C00D2CBC4 /* C2searchViewController.m in Sources */,
 				A5E0B3E11835D47E00D2CBC4 /* ResultViewController.m in Sources */,
 			);
@@ -467,6 +479,7 @@
 				A5E0B3DB1835D30D00D2CBC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5E0B3DC1835D30D00D2CBC4 /* Build configuration list for PBXNativeTarget "C2searchTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +488,7 @@
 				A5E0B3DE1835D30D00D2CBC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
