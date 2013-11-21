@@ -41,7 +41,7 @@
     
     NSDictionary *resultSet = jsonObject[@"ResultSet"];
     NSDictionary *objs = resultSet[@"0"][@"Result"];
-    int totalResultsReturned = [resultSet[@"totalResultsReturned"] intValue];
+    NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
     
     NSMutableArray *yahoo_results = [NSMutableArray array];
     
@@ -50,6 +50,7 @@
         NSDictionary *obj = objs[[NSString stringWithFormat:@"%d", i]];
         Result *result = [[Result alloc] initWithParams:obj[@"Name"]
                                             description:obj[@"Description"]
+                                                  price:[obj[@"Price"][@"_value"] integerValue]
                                                     URL:obj[@"Url"]
                                                imageURL:obj[@"Image"][@"Small"]];
         [yahoo_results addObject:result];
@@ -71,7 +72,7 @@
                                                                  error:&error];
     
     NSArray *objs = jsonObject[@"Items"];
-    int hits = [jsonObject[@"hits"] intValue];
+    NSInteger hits = [jsonObject[@"hits"] integerValue];
     
     NSMutableArray *rakuten_results = [NSMutableArray array];
     
@@ -80,6 +81,7 @@
         NSDictionary *obj = objs[i][@"Item"];
         Result *result = [[Result alloc] initWithParams:obj[@"itemName"]
                                             description:obj[@"itemCaption"]
+                                                  price:[obj[@"itemPrice"] integerValue]
                                                     URL:obj[@"itemUrl"]
                                                imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]];
         [rakuten_results addObject:result];
@@ -107,7 +109,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
-    cell.detailTextLabel.text = result.description;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円", result.price];//result.description;
     cell.imageView.image = result.image;
     return cell;
 }

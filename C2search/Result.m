@@ -10,10 +10,11 @@
 
 @implementation Result
 
--(id)initWithParams: (NSString*)name description:(NSString*)description URL:(NSString*)URL imageURL:(NSString*)imageURL
+-(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL
 {
     _name = name;
     _description = description;
+    _price = price;
     _itemURL = [NSURL URLWithString:URL];
     _imageURL = [NSURL URLWithString:imageURL];
     NSData *data = [NSData dataWithContentsOfURL:_imageURL];
