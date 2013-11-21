@@ -19,7 +19,11 @@
 {
     [super viewDidLoad];
     
-    NSString *query_escaped = [_query stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString *query_escaped = (NSString*) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                  (CFStringRef)_query,
+                                                                                  NULL,
+                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                  kCFStringEncodingUTF8));
     
     results = [NSMutableArray array];
     [results addObjectsFromArray:[ResultViewController getYahooResult:query_escaped]];
