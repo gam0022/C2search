@@ -7,7 +7,6 @@
 //
 
 #import "ResultViewController.h"
-#import "Result.h"
 
 @implementation ResultViewController
 

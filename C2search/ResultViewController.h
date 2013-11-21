@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Const.h"
+#import "Result.h"
 
 @interface ResultViewController : UITableViewController {
     NSMutableArray *results;
