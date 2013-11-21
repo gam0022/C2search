@@ -11,4 +11,5 @@
 @interface Const : NSObject
 extern NSString * const appidYahoo;
 extern NSString * const appidYahooYIPR;
+extern NSString * const appidRakuten;
 @end

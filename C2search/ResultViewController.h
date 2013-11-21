@@ -16,5 +16,6 @@
 @property (nonatomic) NSString *query;
 
 +(NSMutableArray*)getYahooResult: (NSString *)query_escaped;
++(NSMutableArray*)getRakutenResult: (NSString *)query_escaped;
 
 @end
