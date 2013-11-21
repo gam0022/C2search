@@ -10,4 +10,15 @@
 
 @implementation Result
 
+-(id)initWithParams: (NSString*)name description:(NSString*)description URL:(NSString*)URL imageURL:(NSString*)imageURL
+{
+    _name = name;
+    _description = description;
+    _itemURL = [NSURL URLWithString:URL];
+    _imageURL = [NSURL URLWithString:imageURL];
+    NSData *data = [NSData dataWithContentsOfURL:_imageURL];
+    _image = [[UIImage alloc] initWithData:data];
+    return self;
+}
+
 @end

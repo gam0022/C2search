@@ -7,6 +7,7 @@
 //
 
 #import "ResultViewController.h"
+#import "Result.h"
 
 @implementation ResultViewController
 
@@ -39,17 +40,20 @@
                                                                  error:&error];
     
     NSDictionary *resultSet = jsonObject[@"ResultSet"];
-    NSDictionary *result = resultSet[@"0"][@"Result"];
+    NSDictionary *objs = resultSet[@"0"][@"Result"];
     int totalResultsReturned = [resultSet[@"totalResultsReturned"] intValue];
     
     NSMutableArray *yahoo_results = [NSMutableArray array];
     
     for(int i = 0; i < totalResultsReturned; ++i)
     {
-        [yahoo_results addObject: result[[NSString stringWithFormat:@"%d", i]] ];
+        NSDictionary *obj = objs[[NSString stringWithFormat:@"%d", i]];
+        Result *result = [[Result alloc] initWithParams:obj[@"Name"]
+                                            description:obj[@"Description"]
+                                                    URL:obj[@"Url"]
+                                               imageURL:obj[@"Image"][@"Small"]];
+        [yahoo_results addObject:result];
     }
-    
-    //NSLog(@"yahoo_results = %@", yahoo_results);
     return yahoo_results;
 }
 
@@ -71,13 +75,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    NSDictionary *result = results[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",result[@"Name"]];
-    cell.detailTextLabel.text = result[@"Description"];
-    
-    NSURL *img_url = [NSURL URLWithString:result[@"Image"][@"Small"]];
-    NSData *data = [NSData dataWithContentsOfURL:img_url];
-    cell.imageView.image = [[UIImage alloc] initWithData:data];
+    Result *result = results[indexPath.row];
+    cell.textLabel.text = result.name;
+    cell.detailTextLabel.text = result.description;
+    cell.imageView.image = result.image;
     return cell;
 }
 
