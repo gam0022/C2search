@@ -27,7 +27,7 @@
 
 +(NSMutableArray*)getYahooResult: (NSString *)query_escaped
 {
-    NSString *yahoo_url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@",appidYahoo, query_escaped];
+    NSString *yahoo_url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@", appidYahoo, query_escaped];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:yahoo_url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request
@@ -38,15 +38,15 @@
                                                                options:NSJSONReadingMutableContainers
                                                                  error:&error];
     
-    NSDictionary *resultSet = [jsonObject objectForKey:@"ResultSet"];
-    NSDictionary *result = [[resultSet objectForKey:@"0"] objectForKey:@"Result"];
-    int totalResultsReturned = [[resultSet objectForKey:@"totalResultsReturned"] intValue];
+    NSDictionary *resultSet = jsonObject[@"ResultSet"];
+    NSDictionary *result = resultSet[@"0"][@"Result"];
+    int totalResultsReturned = [resultSet[@"totalResultsReturned"] intValue];
     
     NSMutableArray *yahoo_results = [NSMutableArray array];
     
     for(int i = 0; i < totalResultsReturned; ++i)
     {
-        [yahoo_results addObject:[result objectForKey:[NSString stringWithFormat:@"%d", i]]];
+        [yahoo_results addObject: result[[NSString stringWithFormat:@"%d", i]] ];
     }
     
     //NSLog(@"yahoo_results = %@", yahoo_results);
@@ -71,11 +71,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    NSDictionary *result = [results objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[result objectForKey:@"Name"]];
-    cell.detailTextLabel.text = [result objectForKey:@"Description"];
+    NSDictionary *result = results[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",result[@"Name"]];
+    cell.detailTextLabel.text = result[@"Description"];
     
-    NSURL *img_url = [NSURL URLWithString:[[result objectForKey:@"Image"] objectForKey:@"Small"]];
+    NSURL *img_url = [NSURL URLWithString:result[@"Image"][@"Small"]];
     NSData *data = [NSData dataWithContentsOfURL:img_url];
     cell.imageView.image = [[UIImage alloc] initWithData:data];
     return cell;
