@@ -17,8 +17,8 @@
     self.queryText.delegate = self;
     
     CGRect rect = self.view.bounds;
-    rect.origin.y = 200;
-    rect.size.height -= 300;
+    rect.origin.y = 180;
+    rect.size.height = rect.size.width;
     
     /// カメラのpreview画面をsubviewに追加
     NSString *const url = @"http://demo.yipr.multimedia.yahooapis.jp/MultimediaService/V1/recognition";
@@ -81,14 +81,13 @@
         [self.recognizeView startCapture:&error];
         if (error) {
             NSLog(@"%@", error);
-        } else {
-            self.capturing = YES;
+            self.capturing = NO;
         }
     } else {
         NSLog(@"stop capturing");
-        self.capturing = NO;
         [self.recognizeView stopCapture];
     }
+    self.recognizeView.hidden = !self.capturing;
 }
 
 ///YIPRImageRecognizeDelegateの認識成功時のデリゲートメソッドの実装
