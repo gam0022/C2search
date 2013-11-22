@@ -16,13 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apu-A1-nYE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apu-A1-nYE">
                                 <rect key="frame" x="20" y="81" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27A-Rl-k3Z">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27A-Rl-k3Z">
                                 <rect key="frame" x="136" y="112" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Search">
@@ -33,12 +33,41 @@
                                     <action selector="search:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="YiI-el-XX4"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w8g-zL-EOZ">
+                                <rect key="frame" x="44" y="517" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switch_capture:" destination="vXZ-lx-hvc" eventType="valueChanged" id="yrI-hP-8fx"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pT3-Ac-guu">
+                                <rect key="frame" x="214" y="517" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Recognize">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recognize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4sE-15-yZk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="apu-A1-nYE" firstAttribute="top" secondItem="gqO-WP-z2N" secondAttribute="bottom" constant="17" id="1pw-6H-O7l"/>
+                            <constraint firstItem="w8g-zL-EOZ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="44" id="2kZ-0V-u7S"/>
+                            <constraint firstAttribute="trailing" secondItem="pT3-Ac-guu" secondAttribute="trailing" constant="34" id="GgM-0Q-vDI"/>
+                            <constraint firstItem="apu-A1-nYE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="Jdb-pf-J7z"/>
+                            <constraint firstItem="27A-Rl-k3Z" firstAttribute="top" secondItem="apu-A1-nYE" secondAttribute="bottom" constant="1" id="XWI-ld-kgj"/>
+                            <constraint firstAttribute="trailing" secondItem="apu-A1-nYE" secondAttribute="trailing" constant="20" symbolic="YES" id="hgY-WW-fXv"/>
+                            <constraint firstItem="pT3-Ac-guu" firstAttribute="top" secondItem="w8g-zL-EOZ" secondAttribute="top" id="nRU-xj-uHa"/>
+                            <constraint firstItem="vby-hV-xjS" firstAttribute="top" secondItem="pT3-Ac-guu" secondAttribute="bottom" constant="21" id="x1k-2V-mId"/>
+                            <constraint firstItem="27A-Rl-k3Z" firstAttribute="centerX" secondItem="apu-A1-nYE" secondAttribute="centerX" id="yTb-SR-Z97"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="C2search" id="s7Q-Bi-30Y"/>
                     <connections>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
+                        <outlet property="recognizeButton" destination="pT3-Ac-guu" id="x9H-YR-WQG"/>
                         <segue destination="3f4-Ri-HOk" kind="push" identifier="showResult" id="IHR-ec-Xjl"/>
                     </connections>
                 </viewController>
