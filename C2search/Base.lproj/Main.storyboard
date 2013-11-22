@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--2search View Controller - Search-->
+        <!--2search View Controller - C2search-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="C2searchViewController" sceneMemberID="viewController">
@@ -36,10 +36,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="s7Q-Bi-30Y"/>
+                    <navigationItem key="navigationItem" title="C2search" id="s7Q-Bi-30Y"/>
                     <connections>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
-                        <segue destination="3f4-Ri-HOk" kind="push" identifier="ResultSegue" id="IHR-ec-Xjl"/>
+                        <segue destination="3f4-Ri-HOk" kind="push" identifier="showResult" id="IHR-ec-Xjl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -55,11 +55,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="KCS-fR-qqR" detailTextLabel="ONz-Vu-NlT" style="IBUITableViewCellStyleSubtitle" id="55Q-b3-bri">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="KCS-fR-qqR" detailTextLabel="ONz-Vu-NlT" style="IBUITableViewCellStyleSubtitle" id="55Q-b3-bri">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="55Q-b3-bri" id="xON-tJ-xce">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KCS-fR-qqR">
@@ -78,6 +78,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="xXb-yt-0tY" kind="push" identifier="showDetail" id="8MX-e8-rUV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -90,6 +93,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6d-hm-Z0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1094" y="101"/>
+        </scene>
+        <!--Detail View Controller - Web-->
+        <scene sceneID="uQg-NR-2hj">
+            <objects>
+                <viewController id="xXb-yt-0tY" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CU3-fj-G7Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ues-eN-v7V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xZV-S3-ykD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-J7-g2e">
+                                <rect key="frame" x="-4" y="62" width="328" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Web" id="Pva-Re-5Ot"/>
+                    <connections>
+                        <outlet property="myWebView" destination="5rY-J7-g2e" id="85Y-KE-j7p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GUG-6E-tTe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1538" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1Qw-W2-buS">

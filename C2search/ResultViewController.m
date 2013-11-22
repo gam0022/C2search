@@ -118,4 +118,21 @@
     return cell;
 }
 
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Result *result = results[indexPath.row];
+        NSURL *url = result.itemURL;
+        
+        DetailViewController *dvc = segue.destinationViewController;
+        dvc.detailItem = url;
+    }
+}
+
 @end

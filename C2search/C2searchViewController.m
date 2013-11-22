@@ -34,11 +34,11 @@
 }
 
 - (IBAction)search:(id)sender {
-    [self performSegueWithIdentifier:@"ResultSegue" sender:self];
+    [self performSegueWithIdentifier:@"showResult" sender:self];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ResultSegue"]) {
+    if ([segue.identifier isEqualToString:@"showResult"]) {
         //遷移先のViewControllerインスタンスを取得
         ResultViewController *rvc = segue.destinationViewController;
         NSString *query = self.queryText.text;
