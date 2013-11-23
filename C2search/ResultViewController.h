@@ -13,11 +13,18 @@
 
 @interface ResultViewController : UITableViewController {
     NSMutableArray *results;
+    NSString *queryEscaped;
+    
+    NSInteger yahooOffset;
+    NSInteger yahooTotalResultsAvailable;
+    
+    NSInteger rakutenOffsetPage;
+    NSInteger rakutenAvailablePage;
 }
 @property (nonatomic) NSString *query;
 - (IBAction)sort:(id)sender;
 
-+(NSMutableArray*)getYahooResult: (NSString *)query_escaped;
-+(NSMutableArray*)getRakutenResult: (NSString *)query_escaped;
+-(NSMutableArray*)getYahooResult;
+-(NSMutableArray*)getRakutenResult;
 
 @end

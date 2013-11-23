@@ -19,15 +19,20 @@
 {
     [super viewDidLoad];
     
-    NSString *query_escaped = (NSString*) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+    queryEscaped = (NSString*) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                   (CFStringRef)_query,
                                                                                   NULL,
                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                   kCFStringEncodingUTF8));
+    yahooOffset = 0;
+    yahooTotalResultsAvailable = -1;
+    
+    rakutenOffsetPage = 1;
+    rakutenAvailablePage = 100;
     
     results = [NSMutableArray array];
-    [results addObjectsFromArray:[ResultViewController getYahooResult:query_escaped]];
-    [results addObjectsFromArray:[ResultViewController getRakutenResult:query_escaped]];
+    [results addObjectsFromArray:[self getYahooResult]];
+    [results addObjectsFromArray:[self getRakutenResult]];
 }
 
 - (IBAction)sort:(id)sender {
@@ -65,9 +70,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     
 }
 
-+(NSMutableArray*)getYahooResult: (NSString *)query_escaped
+-(NSMutableArray*)getYahooResult
 {
-    NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@", appidYahoo, query_escaped];
+    if (yahooTotalResultsAvailable != -1 && yahooOffset >= yahooTotalResultsAvailable) {
+        return [NSMutableArray array];
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@&hits=10&offset=%d", appidYahoo, queryEscaped, yahooOffset];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request
@@ -77,10 +86,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:json_data
                                                                options:NSJSONReadingMutableContainers
                                                                  error:&error];
+    if (error != nil) {
+        return [NSMutableArray array];
+    }
     
     NSDictionary *resultSet = jsonObject[@"ResultSet"];
     NSDictionary *objs = resultSet[@"0"][@"Result"];
     NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
+    yahooTotalResultsAvailable = [resultSet[@"totalResultsAvailable"] integerValue];
+    NSLog(@"totalResultsReturned: %d", totalResultsReturned);
     
     NSMutableArray *yahoo_results = [NSMutableArray array];
     
@@ -94,12 +108,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                imageURL:obj[@"Image"][@"Small"]];
         [yahoo_results addObject:result];
     }
+    yahooOffset += totalResultsReturned;
     return yahoo_results;
 }
 
-+(NSMutableArray*)getRakutenResult: (NSString *)query_escaped
+-(NSMutableArray*)getRakutenResult
 {
-    NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@", query_escaped, appidRakuten];
+    if (rakutenOffsetPage >= rakutenAvailablePage) {
+        return [NSMutableArray array];
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@&hits=10&page=%d", queryEscaped, appidRakuten, rakutenOffsetPage];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request
@@ -109,6 +128,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:json_data
                                                                options:NSJSONReadingMutableContainers
                                                                  error:&error];
+    if (error != nil) {
+        return [NSMutableArray array];
+    }
     
     NSArray *objs = jsonObject[@"Items"];
     NSInteger hits = [jsonObject[@"hits"] integerValue];
@@ -125,6 +147,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]];
         [rakuten_results addObject:result];
     }
+    ++rakutenOffsetPage;
     return rakuten_results;
 }
 
@@ -153,11 +176,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     return cell;
 }
 
-/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}*/
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
@@ -167,6 +185,18 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         
         DetailViewController *dvc = segue.destinationViewController;
         dvc.detailItem = url;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //一番下までスクロールしたかどうか
+    if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height))
+    {
+        //まだ表示するコンテンツが存在するか判定し存在するなら○件分を取得して表示更新する
+        [results addObjectsFromArray:[self getYahooResult]];
+        [results addObjectsFromArray:[self getRakutenResult]];
+        [self.tableView reloadData];
     }
 }
 
