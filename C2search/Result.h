@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HLSColor.h"
 
 @interface Result : NSObject
 
@@ -17,6 +18,7 @@
 @property NSURL *imageURL;
 @property UIImage  *image;
 @property NSString *shop;
+@property HLSColor *hls;
 
 -(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL shop:(NSString*)shop;
 @end

@@ -74,7 +74,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             break;
         case 1:
             // sort by color
-            NSLog(@"ボタン2");
+            //NSLog(@"ボタン2");
+            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+                return a.hls.hue > b.hls.hue;
+            }];
+            [self.tableView reloadData];
             break;
         case 2:
             // cancel
