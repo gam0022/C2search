@@ -10,6 +10,7 @@
 #import "Const.h"
 #import "Result.h"
 #import "DetailViewController.h"
+#import "ImageProcessing.h"
 
 @interface ResultViewController : UITableViewController
 @property (nonatomic) NSString *query;

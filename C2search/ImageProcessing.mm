@@ -1,49 +1,26 @@
 //
-//  Result.m
+//  ImageProcessing.mm
 //  C2search
 //
-//  Created by gam0022 on 2013/11/20.
+//  Created by gam0022 on 2013/11/23.
 //  Copyright (c) 2013年 gam0022. All rights reserved.
 //
 
-#import "Result.h"
+#import "ImageProcessing.h"
 
-@implementation Result
+@implementation ImageProcessing
 
--(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL shop:(NSString*)shop
+-(HLSColor*)getHLSColorFromUIImage: (UIImage*)image
 {
-    self.name = name;
-    self.description = description;
-    self.price = price;
-    self.itemURL = [NSURL URLWithString:URL];
-    self.imageURL = [NSURL URLWithString:imageURL];
-    self.shop = shop;
-    self.hls = [[HLSColor alloc]initWithHue:360 lightness:0 saturation:0];// 非同期処理で上書きされるまでのダミー
-    
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.imageURL];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[[NSOperationQueue alloc] init]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if (error == nil && ((NSHTTPURLResponse *)response).statusCode == 200) {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   
-                                   // 商品画像の平均色のHLSを計算する
-                                   cv::Mat avg(1,1,CV_32FC3), hls(1,1,CV_32FC3);
-                                   avg = [self getAverageDot:[self cvMatFromUIImage:image]];
-                                   cv::cvtColor(avg, hls, CV_BGR2HLS);
-                                   cv::Vec3b dot = hls.at<cv::Vec3b>(0,0);
-                                   
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       // メインスレッドの処理
-                                       self.image = image;
-                                       self.hls.hue = dot[0] * 2;
-                                       self.hls.lightness = dot[1];
-                                       self.hls.saturation = dot[2];
-                                       NSLog(@"hue: %d", dot[0]*2);
-                                   });
-                               }
-                           }];
-    return self;
+    HLSColor *color = [HLSColor alloc];
+    cv::Mat avg(1,1,CV_32FC3), hls(1,1,CV_32FC3);
+    avg = [self getAverageDot:[self cvMatFromUIImage:image]];
+    cv::cvtColor(avg, hls, CV_BGR2HLS);
+    cv::Vec3b dot = hls.at<cv::Vec3b>(0,0);
+    color.hue = dot[0] * 2;
+    color.lightness = dot[1];
+    color.saturation = dot[2];
+    return color;
 }
 
 -(cv::Mat)getAverageDot: (cv::Mat)src

@@ -20,6 +20,8 @@
     NSInteger rakutenTotalPage;
     
     BOOL isAllItemLoaded;
+    UIImage *imagePlaceholder;
+    ImageProcessing *imageProcessing;
 }
 
 -(void)awakeFromNib
@@ -47,6 +49,9 @@
     results = [NSMutableArray array];
     [results addObjectsFromArray:[self getYahooResult]];
     [results addObjectsFromArray:[self getRakutenResult]];
+    
+    imagePlaceholder = [UIImage imageNamed:@"gam0022_kanji.png"];
+    imageProcessing = [ImageProcessing alloc];
 }
 
 - (IBAction)sort:(id)sender {
@@ -204,9 +209,23 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@", result.price, result.shop];
-    if (result.image != nil) {
-        cell.imageView.image = result.image;
+    if (result.image == nil) {
+        cell.imageView.image = imagePlaceholder;
     }
+    
+    dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t q_main = dispatch_get_main_queue();
+    dispatch_async(q_global, ^{
+        result.image = [UIImage imageWithData:[NSData dataWithContentsOfURL: result.imageURL]];
+        // 商品画像の平均色のHLSを計算する
+        result.hls = [imageProcessing getHLSColorFromUIImage: result.image];
+        // UI操作はメインスレッドで行う
+        dispatch_async(q_main, ^{
+            cell.imageView.image = result.image;
+            [cell setNeedsLayout];
+        });
+    });
+    
     return cell;
 }
 

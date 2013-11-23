@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A51790E9183CF66100E992D6 /* Result.mm in Sources */ = {isa = PBXBuildFile; fileRef = A51790E8183CF66100E992D6 /* Result.mm */; };
+		A503F50D1840F45600B1BF8E /* ImageProcessing.mm in Sources */ = {isa = PBXBuildFile; fileRef = A503F50C1840F45600B1BF8E /* ImageProcessing.mm */; };
+		A51790E9183CF66100E992D6 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = A51790E8183CF66100E992D6 /* Result.m */; };
 		A51790EE183D9B0C00E992D6 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = A51790ED183D9B0C00E992D6 /* Const.m */; };
 		A51790F4183EE90B00E992D6 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A51790F3183EE90B00E992D6 /* DetailViewController.m */; };
 		A51790F6183F1B6300E992D6 /* YIPRImageRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51790F5183F1B6300E992D6 /* YIPRImageRecognizer.framework */; };
@@ -43,8 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A503F50B1840F45600B1BF8E /* ImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessing.h; sourceTree = "<group>"; };
+		A503F50C1840F45600B1BF8E /* ImageProcessing.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessing.mm; sourceTree = "<group>"; };
 		A51790E7183CF66100E992D6 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
-		A51790E8183CF66100E992D6 /* Result.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Result.mm; sourceTree = "<group>"; };
+		A51790E8183CF66100E992D6 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		A51790EC183D9B0C00E992D6 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		A51790ED183D9B0C00E992D6 /* Const.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
 		A51790F2183EE90B00E992D6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -153,11 +156,13 @@
 				A51790F2183EE90B00E992D6 /* DetailViewController.h */,
 				A51790F3183EE90B00E992D6 /* DetailViewController.m */,
 				A51790E7183CF66100E992D6 /* Result.h */,
-				A51790E8183CF66100E992D6 /* Result.mm */,
+				A51790E8183CF66100E992D6 /* Result.m */,
 				A51790EC183D9B0C00E992D6 /* Const.h */,
 				A51790ED183D9B0C00E992D6 /* Const.m */,
 				A51790FF1840C69300E992D6 /* HLSColor.h */,
 				A51791001840C69300E992D6 /* HLSColor.m */,
+				A503F50B1840F45600B1BF8E /* ImageProcessing.h */,
+				A503F50C1840F45600B1BF8E /* ImageProcessing.mm */,
 				A5E0B3C21835D30C00D2CBC4 /* Images.xcassets */,
 				A5E0B3B11835D30C00D2CBC4 /* Supporting Files */,
 			);
@@ -293,11 +298,12 @@
 			files = (
 				A5E0B3B71835D30C00D2CBC4 /* main.m in Sources */,
 				A5E0B3BB1835D30C00D2CBC4 /* C2searchAppDelegate.m in Sources */,
-				A51790E9183CF66100E992D6 /* Result.mm in Sources */,
+				A51790E9183CF66100E992D6 /* Result.m in Sources */,
 				A51791011840C69300E992D6 /* HLSColor.m in Sources */,
 				A51790EE183D9B0C00E992D6 /* Const.m in Sources */,
 				A5E0B3C11835D30C00D2CBC4 /* C2searchViewController.m in Sources */,
 				A5E0B3E11835D47E00D2CBC4 /* ResultViewController.m in Sources */,
+				A503F50D1840F45600B1BF8E /* ImageProcessing.mm in Sources */,
 				A51790F4183EE90B00E992D6 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
