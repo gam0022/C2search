@@ -8,7 +8,12 @@
 
 #import "C2searchViewController.h"
 
-@implementation C2searchViewController
+@implementation C2searchViewController {
+    UIColor *buttonTintDefault;
+    UIColor *buttonTintSelected;
+    NSString *recognizeLabelTextDefault;
+    NSString *recogniziLabelTextSelected;
+}
 
 - (void)viewDidLoad
 {
@@ -29,7 +34,11 @@
     
     self.capturing = NO;
     self.recognizeButton.enabled = NO;
-    //self.recognizeView.opaque
+    
+    buttonTintDefault = self.recognizeButton.tintColor;
+    buttonTintSelected = [UIColor grayColor];
+    recognizeLabelTextDefault = @"Recognize";
+    recogniziLabelTextSelected = @"Recognizing";
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +78,13 @@
             NSLog(@"%@ ", error);
         }
     }
+    if (self.recognizeView.recognizing) {
+        [self.recognizeButton setTintColor:buttonTintSelected];
+        [self.recognizeButton setTitle:recogniziLabelTextSelected forState:UIControlStateNormal];
+    } else {
+        [self.recognizeButton setTintColor:buttonTintDefault];
+        [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)switch_capture:(id)sender {
@@ -94,26 +110,43 @@
 - (void)yiprDidImageRecognition:(YIPRImageRecognizeView *)view didRecognitionResult:(NSMutableArray *)result
 {
     NSLog(@"成功");
-    for (YIPRRecognitionResult* obj in result) {
-        /*ModalViewController* mvc = [[ModalViewController alloc] init];
-        
-        // Modalで結果を表示(1つ目だけ)
-        if (obj.clickURL) {
-            NSLog(@"clickURL = %@", obj.clickURL);
-            NSLog(@"title = %@", obj.title);
-            [self presentViewController:mvc animated:YES completion:^(void) {
-                [mvc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:obj.clickURL]]];
-            }];
-            break;
-        }*/
-        _queryText.text = obj.title;
+    
+    if(result.count > 0) {
+        for (YIPRRecognitionResult* obj in result) {
+            /*ModalViewController* mvc = [[ModalViewController alloc] init];
+             
+             // Modalで結果を表示(1つ目だけ)
+             if (obj.clickURL) {
+             NSLog(@"clickURL = %@", obj.clickURL);
+             NSLog(@"title = %@", obj.title);
+             [self presentViewController:mvc animated:YES completion:^(void) {
+             [mvc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:obj.clickURL]]];
+             }];
+             break;
+             }*/
+            NSLog(@"obj.title: %@", obj.title);
+            self.queryText.text = obj.title;
+        }
+    } else {
+        NSLog(@"結果なし");
     }
+    [self.recognizeButton setTintColor:buttonTintDefault];
+    [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
 }
 
 ///YIPRImageRecognizeDelegateの認識失敗時のデリゲートメソッドの実装
 - (void)yiprFailedImageRecognition:(YIPRImageRecognizeView *)view error:(NSError *)error
 {
     NSLog(@"%@", error);
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"認識失敗"
+                          message:@"画像の認識に失敗しました。"
+                          delegate:nil
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"OK", nil];
+    [alert show];
+    [self.recognizeButton setTintColor:buttonTintDefault];
+    [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
 }
 
 @end
