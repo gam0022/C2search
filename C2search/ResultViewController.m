@@ -18,6 +18,8 @@
     
     NSInteger rakutenOffsetPage;
     NSInteger rakutenTotalPage;
+    
+    BOOL isAllItemLoaded;
 }
 
 -(void)awakeFromNib
@@ -39,6 +41,8 @@
     
     rakutenOffsetPage = 1;
     rakutenTotalPage = 2;
+    
+    isAllItemLoaded = NO;
     
     results = [NSMutableArray array];
     [results addObjectsFromArray:[self getYahooResult]];
@@ -87,6 +91,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
     
     @try {
+        NSMutableArray *yahoo_results = [NSMutableArray array];
         NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@&hits=10&offset=%d", appidYahoo, queryEscaped, yahooOffset];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -105,7 +110,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         NSDictionary *objs = resultSet[@"0"][@"Result"];
         NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
         yahooTotal = [resultSet[@"totalResultsAvailable"] integerValue];
-        NSMutableArray *yahoo_results = [NSMutableArray array];
         
         for(int i = 0; i < totalResultsReturned; ++i)
         {
@@ -122,7 +126,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         return yahoo_results;
     }
     
-    @catch (id obj) {
+    @catch (NSException *e) {
         NSLog(@"Yahoo商品検索で例外発生");
         return [NSMutableArray array];
     }
@@ -135,6 +139,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
     
     @try {
+        NSMutableArray *rakuten_results = [NSMutableArray array];
         NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@&hits=10&page=%d", queryEscaped, appidRakuten, rakutenOffsetPage];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -152,7 +157,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         NSArray *objs = jsonObject[@"Items"];
         NSInteger hits = [jsonObject[@"hits"] integerValue];
         rakutenTotalPage = [jsonObject[@"pageCount"] integerValue];
-        NSMutableArray *rakuten_results = [NSMutableArray array];
         
         for(int i = 0; i < hits; ++i)
         {
@@ -169,7 +173,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         return rakuten_results;
     }
     
-    @catch (id obj) {
+    @catch (NSException *e) {
         NSLog(@"楽天商品検索で例外発生");
         return [NSMutableArray array];
     }
@@ -215,19 +219,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //一番下までスクロールしたかどうか
-    if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height))
+    if(!isAllItemLoaded && self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height))
     {
         @try {
-            //まだ表示するコンテンツが存在するか判定し存在するなら○件分を取得して表示更新する
+            //まだ表示するコンテンツが存在するか判定し存在するなら取得して表示更新する
             NSInteger pre_count = results.count;
             [results addObjectsFromArray:[self getYahooResult]];
             [results addObjectsFromArray:[self getRakutenResult]];
             if (results.count > pre_count) {
                 [self.tableView reloadData];
+            } else {
+                isAllItemLoaded = YES;
             }
         }
         
-        @catch (id obj) {
+        @catch (NSException *e) {
             NSLog(@"catched exception in scrollViewDidScroll()");
         }
     }
