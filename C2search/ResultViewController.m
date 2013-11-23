@@ -30,6 +30,41 @@
     [results addObjectsFromArray:[ResultViewController getRakutenResult:query_escaped]];
 }
 
+- (IBAction)sort:(id)sender {
+    UIActionSheet *as = [[UIActionSheet alloc] init];
+    as.delegate = self;
+    as.title = @"ソートの種類を選択してください。";
+    [as addButtonWithTitle:@"価格"];
+    [as addButtonWithTitle:@"色"];
+    [as addButtonWithTitle:@"キャンセル"];
+    as.cancelButtonIndex = 2;
+    //as.destructiveButtonIndex = 0;
+    [as showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet*)actionSheet
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            // sort by price
+            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+                return a.price > b.price;
+            }];
+            [self.tableView reloadData];
+            break;
+        case 1:
+            // sort by color
+            NSLog(@"ボタン2");
+            break;
+        case 2:
+            // cancel
+            NSLog(@"ボタン3");
+            break;
+    }
+    
+}
+
 +(NSMutableArray*)getYahooResult: (NSString *)query_escaped
 {
     NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@", appidYahoo, query_escaped];

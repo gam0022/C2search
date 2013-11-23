@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--2search View Controller - C2search-->
+        <!--2search View Controller - Top-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="C2searchViewController" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             <constraint firstItem="27A-Rl-k3Z" firstAttribute="centerX" secondItem="apu-A1-nYE" secondAttribute="centerX" id="yTb-SR-Z97"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="C2search" id="s7Q-Bi-30Y"/>
+                    <navigationItem key="navigationItem" title="Top" id="s7Q-Bi-30Y"/>
                     <connections>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
                         <outlet property="recognizeButton" destination="pT3-Ac-guu" id="x9H-YR-WQG"/>
@@ -117,7 +117,13 @@
                             <outlet property="delegate" destination="3f4-Ri-HOk" id="plF-Tf-z7d"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Result" id="ALm-pn-ggd"/>
+                    <navigationItem key="navigationItem" title="Result" id="ALm-pn-ggd">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="a8D-fV-gyy">
+                            <connections>
+                                <action selector="sort:" destination="3f4-Ri-HOk" id="EoA-0n-mQf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6d-hm-Z0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

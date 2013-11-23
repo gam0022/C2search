@@ -15,6 +15,7 @@
     NSMutableArray *results;
 }
 @property (nonatomic) NSString *query;
+- (IBAction)sort:(id)sender;
 
 +(NSMutableArray*)getYahooResult: (NSString *)query_escaped;
 +(NSMutableArray*)getRakutenResult: (NSString *)query_escaped;
