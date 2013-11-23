@@ -52,7 +52,26 @@
     return YES;
 }
 
+- (void)setRecognizeButtonDefault
+{
+    [self.recognizeButton setTintColor:buttonTintDefault];
+    [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
+}
+
+- (void)setRecognizeButtonSelected
+{
+    [self.recognizeButton setTintColor:buttonTintSelected];
+    [self.recognizeButton setTitle:recogniziLabelTextSelected forState:UIControlStateNormal];
+}
+
 - (IBAction)search:(id)sender {
+    // 画像認識を停止する
+    self.captureSwitch.on = NO;
+    [self.recognizeView stopCapture];
+    self.recognizeView.hidden = YES;
+    [self setRecognizeButtonDefault];
+    self.recognizeButton.enabled = NO;
+    
     [self performSegueWithIdentifier:@"showResult" sender:self];
 }
 
@@ -78,11 +97,9 @@
         }
     }
     if (self.recognizeView.recognizing) {
-        [self.recognizeButton setTintColor:buttonTintSelected];
-        [self.recognizeButton setTitle:recogniziLabelTextSelected forState:UIControlStateNormal];
+        [self setRecognizeButtonSelected];
     } else {
-        [self.recognizeButton setTintColor:buttonTintDefault];
-        [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
+        [self setRecognizeButtonDefault];
     }
 }
 
@@ -101,6 +118,7 @@
     } else {
         NSLog(@"stop capturing");
         [self.recognizeView stopCapture];
+        [self setRecognizeButtonDefault];
     }
     self.recognizeView.hidden = !self.capturing;
 }
@@ -126,8 +144,7 @@
                               otherButtonTitles:@"OK", nil];
         [alert show];
     }
-    [self.recognizeButton setTintColor:buttonTintDefault];
-    [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
+    [self setRecognizeButtonDefault];
 }
 
 ///YIPRImageRecognizeDelegateの認識失敗時のデリゲートメソッドの実装
@@ -141,8 +158,7 @@
                           cancelButtonTitle:nil
                           otherButtonTitles:@"OK", nil];
     [alert show];
-    [self.recognizeButton setTintColor:buttonTintDefault];
-    [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
+    [self setRecognizeButtonDefault];
 }
 
 @end

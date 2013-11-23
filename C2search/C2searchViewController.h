@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *queryText;
 @property (nonatomic, strong) YIPRImageRecognizeView* recognizeView;
+@property (weak, nonatomic) IBOutlet UISwitch *captureSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *recognizeButton;
 
 @property (nonatomic) BOOL capturing;

@@ -66,6 +66,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Top" id="s7Q-Bi-30Y"/>
                     <connections>
+                        <outlet property="captureSwitch" destination="w8g-zL-EOZ" id="YLT-7H-Njl"/>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
                         <outlet property="recognizeButton" destination="pT3-Ac-guu" id="x9H-YR-WQG"/>
                         <segue destination="3f4-Ri-HOk" kind="push" identifier="showResult" id="IHR-ec-Xjl"/>
