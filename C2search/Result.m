@@ -10,7 +10,7 @@
 
 @implementation Result
 
--(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL
+-(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL shop:(NSString*)shop
 {
     _name = name;
     _description = description;
@@ -19,6 +19,7 @@
     _imageURL = [NSURL URLWithString:imageURL];
     NSData *data = [NSData dataWithContentsOfURL:_imageURL];
     _image = [[UIImage alloc] initWithData:data];
+    _shop = shop;
     return self;
 }
 

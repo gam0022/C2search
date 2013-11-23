@@ -105,7 +105,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                             description:obj[@"Description"]
                                                   price:[obj[@"Price"][@"_value"] integerValue]
                                                     URL:obj[@"Url"]
-                                               imageURL:obj[@"Image"][@"Small"]];
+                                               imageURL:obj[@"Image"][@"Small"]
+                                                   shop:@"Yahoo"];
         [yahoo_results addObject:result];
     }
     yahooOffset += totalResultsReturned;
@@ -144,7 +145,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                             description:obj[@"itemCaption"]
                                                   price:[obj[@"itemPrice"] integerValue]
                                                     URL:obj[@"itemUrl"]
-                                               imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]];
+                                               imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]
+                                                   shop:@"楽天"];
         [rakuten_results addObject:result];
     }
     ++rakutenOffsetPage;
@@ -171,7 +173,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円", result.price];//result.description;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@", result.price, result.shop];
     cell.imageView.image = result.image;
     return cell;
 }

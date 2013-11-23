@@ -16,6 +16,7 @@
 @property NSInteger price;
 @property NSURL *imageURL;
 @property UIImage  *image;
+@property NSString *shop;
 
--(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL;
+-(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL shop:(NSString*)shop;
 @end
