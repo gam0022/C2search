@@ -17,21 +17,36 @@
     self.price = price;
     self.itemURL = [NSURL URLWithString:URL];
     self.imageURL = [NSURL URLWithString:imageURL];
-    NSData *data = [NSData dataWithContentsOfURL:self.imageURL];
-    self.image = [[UIImage alloc] initWithData:data];
+    self.shop = shop;
+    self.hls = [[HLSColor alloc]initWithHue:360 lightness:0 saturation:0];// 非同期処理で上書きされるまでのダミー
     
-    cv::Mat avg(1,1,CV_32FC3), hls(1,1,CV_32FC3);
-    avg = [self getAverageDot:[self cvMatFromUIImage:self.image]];
-    cv::cvtColor(avg, hls, CV_BGR2HLS);
-    cv::Vec3b dot = hls.at<cv::Vec3b>(0,0);
-    self.hls = [[HLSColor alloc]initWithHue:dot[0]*2 lightness:dot[1] saturation:dot[2]];
-    NSLog(@"hls: %d", dot[0]*2);
-    
-    _shop = shop;
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.imageURL];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if (error == nil && ((NSHTTPURLResponse *)response).statusCode == 200) {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   
+                                   // 商品画像の平均色のHLSを計算する
+                                   cv::Mat avg(1,1,CV_32FC3), hls(1,1,CV_32FC3);
+                                   avg = [self getAverageDot:[self cvMatFromUIImage:image]];
+                                   cv::cvtColor(avg, hls, CV_BGR2HLS);
+                                   cv::Vec3b dot = hls.at<cv::Vec3b>(0,0);
+                                   
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       // メインスレッドの処理
+                                       self.image = image;
+                                       self.hls.hue = dot[0] * 2;
+                                       self.hls.lightness = dot[1];
+                                       self.hls.saturation = dot[2];
+                                       NSLog(@"hue: %d", dot[0]*2);
+                                   });
+                               }
+                           }];
     return self;
 }
 
-- (cv::Mat)getAverageDot: (cv::Mat)src
+-(cv::Mat)getAverageDot: (cv::Mat)src
 {
     cv::Mat m1, m2;
     cv::reduce(src, m1, 0, CV_REDUCE_AVG);

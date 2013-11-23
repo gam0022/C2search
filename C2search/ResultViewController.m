@@ -195,7 +195,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [results count];
+    return results.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,7 +204,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@", result.price, result.shop];
-    cell.imageView.image = result.image;
+    if (result.image != nil) {
+        cell.imageView.image = result.image;
+    }
     return cell;
 }
 
@@ -220,10 +222,35 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+/*- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //一番下までスクロールしたかどうか
-    if(!isAllItemLoaded && self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height))
+    if(!isAllItemLoaded && self.tableView.contentOffset.y > (self.tableView.contentSize.height - self.tableView.bounds.size.height + 50))
+    {
+        @try {
+            //まだ表示するコンテンツが存在するか判定し存在するなら取得して表示更新する
+            NSInteger pre_count = results.count;
+            [results addObjectsFromArray:[self getYahooResult]];
+            [results addObjectsFromArray:[self getRakutenResult]];
+            if (results.count > pre_count) {
+                [self.tableView reloadData];
+            } else {
+                isAllItemLoaded = YES;
+            }
+        }
+        
+        @catch (NSException *e) {
+            NSLog(@"catched exception in scrollViewDidScroll()");
+        }
+    }
+}*/
+
+-(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //一番下までスクロールしたかどうか
+    NSLog(@"indexPath.row: %d", indexPath.row);
+    NSLog(@"results.count: %d", results.count);
+    if(!isAllItemLoaded && indexPath.row >= results.count - 1)
     {
         @try {
             //まだ表示するコンテンツが存在するか判定し存在するなら取得して表示更新する

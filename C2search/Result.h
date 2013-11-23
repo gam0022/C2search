@@ -11,14 +11,14 @@
 
 @interface Result : NSObject
 
-@property NSString *name;
-@property NSString *description;
-@property NSURL *itemURL;
-@property NSInteger price;
-@property NSURL *imageURL;
-@property UIImage  *image;
-@property NSString *shop;
-@property HLSColor *hls;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSURL *itemURL;
+@property (nonatomic) NSInteger price;
+@property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, strong) UIImage  *image;
+@property (nonatomic, strong) NSString *shop;
+@property (nonatomic, strong) HLSColor *hls;
 
 -(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL shop:(NSString*)shop;
 @end
