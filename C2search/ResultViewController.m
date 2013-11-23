@@ -9,6 +9,16 @@
 #import "ResultViewController.h"
 
 @implementation ResultViewController
+{
+    NSMutableArray *results;
+    NSString *queryEscaped;
+    
+    NSInteger yahooOffset;
+    NSInteger yahooTotal;
+    
+    NSInteger rakutenOffsetPage;
+    NSInteger rakutenTotalPage;
+}
 
 -(void)awakeFromNib
 {
@@ -25,10 +35,10 @@
                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                   kCFStringEncodingUTF8));
     yahooOffset = 0;
-    yahooTotalResultsAvailable = -1;
+    yahooTotal = 1;
     
     rakutenOffsetPage = 1;
-    rakutenAvailablePage = -1;
+    rakutenTotalPage = 2;
     
     results = [NSMutableArray array];
     [results addObjectsFromArray:[self getYahooResult]];
@@ -72,7 +82,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 -(NSMutableArray*)getYahooResult
 {
-    if (yahooTotalResultsAvailable != -1 && yahooOffset >= yahooTotalResultsAvailable) {
+    if (yahooOffset >= yahooTotal) {
         return [NSMutableArray array];
     }
     
@@ -94,7 +104,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         NSDictionary *resultSet = jsonObject[@"ResultSet"];
         NSDictionary *objs = resultSet[@"0"][@"Result"];
         NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
-        yahooTotalResultsAvailable = [resultSet[@"totalResultsAvailable"] integerValue];
+        yahooTotal = [resultSet[@"totalResultsAvailable"] integerValue];
         NSMutableArray *yahoo_results = [NSMutableArray array];
         
         for(int i = 0; i < totalResultsReturned; ++i)
@@ -120,7 +130,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 -(NSMutableArray*)getRakutenResult
 {
-    if (rakutenAvailablePage == -1 || rakutenOffsetPage >= rakutenAvailablePage) {
+    if (rakutenOffsetPage >= rakutenTotalPage) {
         return [NSMutableArray array];
     }
     
@@ -141,7 +151,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         
         NSArray *objs = jsonObject[@"Items"];
         NSInteger hits = [jsonObject[@"hits"] integerValue];
-        rakutenAvailablePage = [jsonObject[@"pageCount"] integerValue];
+        rakutenTotalPage = [jsonObject[@"pageCount"] integerValue];
         NSMutableArray *rakuten_results = [NSMutableArray array];
         
         for(int i = 0; i < hits; ++i)
@@ -209,9 +219,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     {
         @try {
             //まだ表示するコンテンツが存在するか判定し存在するなら○件分を取得して表示更新する
+            NSInteger pre_count = results.count;
             [results addObjectsFromArray:[self getYahooResult]];
             [results addObjectsFromArray:[self getRakutenResult]];
-            [self.tableView reloadData];
+            if (results.count > pre_count) {
+                [self.tableView reloadData];
+            }
         }
         
         @catch (id obj) {

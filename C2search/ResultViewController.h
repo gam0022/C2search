@@ -11,16 +11,7 @@
 #import "Result.h"
 #import "DetailViewController.h"
 
-@interface ResultViewController : UITableViewController {
-    NSMutableArray *results;
-    NSString *queryEscaped;
-    
-    NSInteger yahooOffset;
-    NSInteger yahooTotalResultsAvailable;
-    
-    NSInteger rakutenOffsetPage;
-    NSInteger rakutenAvailablePage;
-}
+@interface ResultViewController : UITableViewController
 @property (nonatomic) NSString *query;
 - (IBAction)sort:(id)sender;
 
