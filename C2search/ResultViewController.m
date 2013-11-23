@@ -95,8 +95,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         NSDictionary *objs = resultSet[@"0"][@"Result"];
         NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
         yahooTotalResultsAvailable = [resultSet[@"totalResultsAvailable"] integerValue];
-        NSLog(@"totalResultsReturned: %d", totalResultsReturned);
-        
         NSMutableArray *yahoo_results = [NSMutableArray array];
         
         for(int i = 0; i < totalResultsReturned; ++i)
@@ -143,7 +141,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         
         NSArray *objs = jsonObject[@"Items"];
         NSInteger hits = [jsonObject[@"hits"] integerValue];
-        
         NSMutableArray *rakuten_results = [NSMutableArray array];
         
         for(int i = 0; i < hits; ++i)
