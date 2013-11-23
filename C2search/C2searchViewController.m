@@ -65,12 +65,14 @@
 }
 
 - (IBAction)search:(id)sender {
+    /*
     // 画像認識を停止する
     self.captureSwitch.on = NO;
     [self.recognizeView stopCapture];
     self.recognizeView.hidden = YES;
     [self setRecognizeButtonDefault];
     self.recognizeButton.enabled = NO;
+     */
     
     [self performSegueWithIdentifier:@"showResult" sender:self];
 }
@@ -134,6 +136,7 @@
         }
         YIPRRecognitionResult *obj = result[0];
         self.queryText.text = obj.title;
+        [self performSegueWithIdentifier:@"showResult" sender:self];
     } else {
         NSLog(@"結果なし");
         UIAlertView *alert = [[UIAlertView alloc]
