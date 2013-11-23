@@ -28,7 +28,7 @@
     yahooTotalResultsAvailable = -1;
     
     rakutenOffsetPage = 1;
-    rakutenAvailablePage = 100;
+    rakutenAvailablePage = -1;
     
     results = [NSMutableArray array];
     [results addObjectsFromArray:[self getYahooResult]];
@@ -120,7 +120,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 -(NSMutableArray*)getRakutenResult
 {
-    if (rakutenOffsetPage >= rakutenAvailablePage) {
+    if (rakutenAvailablePage == -1 || rakutenOffsetPage >= rakutenAvailablePage) {
         return [NSMutableArray array];
     }
     
@@ -141,6 +141,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         
         NSArray *objs = jsonObject[@"Items"];
         NSInteger hits = [jsonObject[@"hits"] integerValue];
+        rakutenAvailablePage = [jsonObject[@"pageCount"] integerValue];
         NSMutableArray *rakuten_results = [NSMutableArray array];
         
         for(int i = 0; i < hits; ++i)
