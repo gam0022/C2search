@@ -112,21 +112,11 @@
     NSLog(@"成功");
     
     if(result.count > 0) {
-        for (YIPRRecognitionResult* obj in result) {
-            /*ModalViewController* mvc = [[ModalViewController alloc] init];
-             
-             // Modalで結果を表示(1つ目だけ)
-             if (obj.clickURL) {
-             NSLog(@"clickURL = %@", obj.clickURL);
-             NSLog(@"title = %@", obj.title);
-             [self presentViewController:mvc animated:YES completion:^(void) {
-             [mvc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:obj.clickURL]]];
-             }];
-             break;
-             }*/
-            NSLog(@"obj.title: %@", obj.title);
-            self.queryText.text = obj.title;
+        for (YIPRRecognitionResult *obj in result) {
+            NSLog(@"title: %@", obj.title);
         }
+        YIPRRecognitionResult *obj = result[0];
+        self.queryText.text = obj.title;
     } else {
         NSLog(@"結果なし");
     }
