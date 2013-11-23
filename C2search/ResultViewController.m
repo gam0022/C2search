@@ -76,41 +76,48 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         return [NSMutableArray array];
     }
     
-    NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@&hits=10&offset=%d", appidYahoo, queryEscaped, yahooOffset];
+    @try {
+        NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@&hits=10&offset=%d", appidYahoo, queryEscaped, yahooOffset];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSData *json_data = [NSURLConnection sendSynchronousRequest:request
+                                                  returningResponse:nil
+                                                              error:nil];
+        NSError *error=nil;
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:json_data
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:&error];
+        if (error != nil) {
+            @throw @"error";
+        }
+        
+        NSDictionary *resultSet = jsonObject[@"ResultSet"];
+        NSDictionary *objs = resultSet[@"0"][@"Result"];
+        NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
+        yahooTotalResultsAvailable = [resultSet[@"totalResultsAvailable"] integerValue];
+        NSLog(@"totalResultsReturned: %d", totalResultsReturned);
+        
+        NSMutableArray *yahoo_results = [NSMutableArray array];
+        
+        for(int i = 0; i < totalResultsReturned; ++i)
+        {
+            NSDictionary *obj = objs[[NSString stringWithFormat:@"%d", i]];
+            Result *result = [[Result alloc] initWithParams:obj[@"Name"]
+                                                description:obj[@"Description"]
+                                                      price:[obj[@"Price"][@"_value"] integerValue]
+                                                        URL:obj[@"Url"]
+                                                   imageURL:obj[@"Image"][@"Small"]
+                                                       shop:@"Yahoo"];
+            [yahoo_results addObject:result];
+        }
+        yahooOffset += totalResultsReturned;
+        return yahoo_results;
+    }
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSData *json_data = [NSURLConnection sendSynchronousRequest:request
-                                              returningResponse:nil
-                                                          error:nil];
-    NSError *error=nil;
-    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:json_data
-                                                               options:NSJSONReadingMutableContainers
-                                                                 error:&error];
-    if (error != nil) {
+    @catch (id obj) {
+        NSLog(@"Yahoo商品検索で例外発生");
         return [NSMutableArray array];
     }
-    
-    NSDictionary *resultSet = jsonObject[@"ResultSet"];
-    NSDictionary *objs = resultSet[@"0"][@"Result"];
-    NSInteger totalResultsReturned = [resultSet[@"totalResultsReturned"] integerValue];
-    yahooTotalResultsAvailable = [resultSet[@"totalResultsAvailable"] integerValue];
-    NSLog(@"totalResultsReturned: %d", totalResultsReturned);
-    
-    NSMutableArray *yahoo_results = [NSMutableArray array];
-    
-    for(int i = 0; i < totalResultsReturned; ++i)
-    {
-        NSDictionary *obj = objs[[NSString stringWithFormat:@"%d", i]];
-        Result *result = [[Result alloc] initWithParams:obj[@"Name"]
-                                            description:obj[@"Description"]
-                                                  price:[obj[@"Price"][@"_value"] integerValue]
-                                                    URL:obj[@"Url"]
-                                               imageURL:obj[@"Image"][@"Small"]
-                                                   shop:@"Yahoo"];
-        [yahoo_results addObject:result];
-    }
-    yahooOffset += totalResultsReturned;
-    return yahoo_results;
 }
 
 -(NSMutableArray*)getRakutenResult
@@ -119,38 +126,45 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         return [NSMutableArray array];
     }
     
-    NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@&hits=10&page=%d", queryEscaped, appidRakuten, rakutenOffsetPage];
+    @try {
+        NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@&hits=10&page=%d", queryEscaped, appidRakuten, rakutenOffsetPage];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSData *json_data = [NSURLConnection sendSynchronousRequest:request
+                                                  returningResponse:nil
+                                                              error:nil];
+        NSError *error=nil;
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:json_data
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:&error];
+        if (error != nil) {
+            @throw @"error";
+        }
+        
+        NSArray *objs = jsonObject[@"Items"];
+        NSInteger hits = [jsonObject[@"hits"] integerValue];
+        
+        NSMutableArray *rakuten_results = [NSMutableArray array];
+        
+        for(int i = 0; i < hits; ++i)
+        {
+            NSDictionary *obj = objs[i][@"Item"];
+            Result *result = [[Result alloc] initWithParams:obj[@"itemName"]
+                                                description:obj[@"itemCaption"]
+                                                      price:[obj[@"itemPrice"] integerValue]
+                                                        URL:obj[@"itemUrl"]
+                                                   imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]
+                                                       shop:@"楽天"];
+            [rakuten_results addObject:result];
+        }
+        ++rakutenOffsetPage;
+        return rakuten_results;
+    }
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSData *json_data = [NSURLConnection sendSynchronousRequest:request
-                                              returningResponse:nil
-                                                          error:nil];
-    NSError *error=nil;
-    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:json_data
-                                                               options:NSJSONReadingMutableContainers
-                                                                 error:&error];
-    if (error != nil) {
+    @catch (id obj) {
+        NSLog(@"楽天商品検索で例外発生");
         return [NSMutableArray array];
     }
-    
-    NSArray *objs = jsonObject[@"Items"];
-    NSInteger hits = [jsonObject[@"hits"] integerValue];
-    
-    NSMutableArray *rakuten_results = [NSMutableArray array];
-    
-    for(int i = 0; i < hits; ++i)
-    {
-        NSDictionary *obj = objs[i][@"Item"];
-        Result *result = [[Result alloc] initWithParams:obj[@"itemName"]
-                                            description:obj[@"itemCaption"]
-                                                  price:[obj[@"itemPrice"] integerValue]
-                                                    URL:obj[@"itemUrl"]
-                                               imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]
-                                                   shop:@"楽天"];
-        [rakuten_results addObject:result];
-    }
-    ++rakutenOffsetPage;
-    return rakuten_results;
 }
 
 -(void)didReceiveMemoryWarning
