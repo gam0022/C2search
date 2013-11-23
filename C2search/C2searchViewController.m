@@ -65,7 +65,6 @@
     }
 }
 
-
 - (IBAction)recognize:(id)sender {
     if (self.recognizeView.recognizing == YES) {
         NSLog(@"stop recognizing");
@@ -119,6 +118,13 @@
         self.queryText.text = obj.title;
     } else {
         NSLog(@"結果なし");
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"結果なし"
+                              message:@"検索結果はありませんでした。"
+                              delegate:nil
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"OK", nil];
+        [alert show];
     }
     [self.recognizeButton setTintColor:buttonTintDefault];
     [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
