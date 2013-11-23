@@ -206,10 +206,16 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     //一番下までスクロールしたかどうか
     if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height))
     {
-        //まだ表示するコンテンツが存在するか判定し存在するなら○件分を取得して表示更新する
-        [results addObjectsFromArray:[self getYahooResult]];
-        [results addObjectsFromArray:[self getRakutenResult]];
-        [self.tableView reloadData];
+        @try {
+            //まだ表示するコンテンツが存在するか判定し存在するなら○件分を取得して表示更新する
+            [results addObjectsFromArray:[self getYahooResult]];
+            [results addObjectsFromArray:[self getRakutenResult]];
+            [self.tableView reloadData];
+        }
+        
+        @catch (id obj) {
+            NSLog(@"catched exception in scrollViewDidScroll()");
+        }
     }
 }
 
