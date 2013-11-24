@@ -156,6 +156,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             [yahoo_results addObject:result];
         }
         yahooOffset += totalResultsReturned;
+        NSLog(@"Yahoo商品検索に成功: %d件", yahoo_results.count);
         return yahoo_results;
     }
     
@@ -205,6 +206,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             [rakuten_results addObject:result];
         }
         ++rakutenOffsetPage;
+        NSLog(@"楽天の検索が成功: %d件", rakuten_results.count);
         return rakuten_results;
     }
     
@@ -297,6 +299,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     //一番下までスクロールしたかどうか
     NSLog(@"indexPath.row: %d", indexPath.row);
     NSLog(@"results.count: %d", results.count);
+    NSLog(@"results.class: %@", results.class);
     if(indexPath.row >= results.count - 1)
     {
         @try {
