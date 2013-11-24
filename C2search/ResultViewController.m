@@ -301,8 +301,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 -(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath {
     //一番下までスクロールしたかどうか
-    NSLog(@"indexPath.row: %d", indexPath.row);
-    NSLog(@"results.count: %d", results.count);
+    //NSLog(@"indexPath.row: %d", indexPath.row);
+    //NSLog(@"results.count: %d", results.count);
     NSLog(@"results.class: %@", results.class);
     if(indexPath.row >= results.count - 1)
     {
@@ -334,6 +334,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                     }
                 });
             });
+            
+            // 意味の分からないことに、results が途中で NSArray になることがあるよう
+            if([results isMemberOfClass:[NSArray class]]) {
+                NSLog(@"怪奇現象><");
+                results = [results mutableCopy];
+            }
         }
         
         @catch (NSException *e) {
