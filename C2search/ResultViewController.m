@@ -19,7 +19,6 @@
     NSInteger rakutenOffsetPage;
     NSInteger rakutenTotalPage;
     
-    BOOL isAllItemLoaded;
     UIImage *imagePlaceholder;
     ImageProcessing *imageProcessing;
 }
@@ -43,8 +42,6 @@
     
     rakutenOffsetPage = 1;
     rakutenTotalPage = 2;
-    
-    isAllItemLoaded = NO;
     
     results = [NSMutableArray array];
     [results addObjectsFromArray:[self getYahooResult]];
@@ -270,17 +267,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     //一番下までスクロールしたかどうか
     NSLog(@"indexPath.row: %d", indexPath.row);
     NSLog(@"results.count: %d", results.count);
-    if(!isAllItemLoaded && indexPath.row >= results.count - 1)
+    if(indexPath.row >= results.count - 1)
     {
         @try {
             //まだ表示するコンテンツが存在するか判定し存在するなら取得して表示更新する
             NSInteger pre_count = results.count;
             [results addObjectsFromArray:[self getYahooResult]];
+            if (results.count > pre_count) {
+                [self.tableView reloadData];
+            }
+            pre_count = results.count;
             [results addObjectsFromArray:[self getRakutenResult]];
             if (results.count > pre_count) {
                 [self.tableView reloadData];
-            } else {
-                isAllItemLoaded = YES;
             }
         }
         
