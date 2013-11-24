@@ -19,6 +19,8 @@
     NSInteger rakutenOffsetPage;
     NSInteger rakutenTotalPage;
     
+    NSInteger lastSortedIndex;
+    
     UIImage *imagePlaceholder;
     ImageProcessing *imageProcessing;
 }
@@ -43,6 +45,8 @@
     rakutenOffsetPage = 1;
     rakutenTotalPage = 2;
     
+    lastSortedIndex = -1;
+    
     results = [NSMutableArray array];
     [results addObjectsFromArray:[self getYahooResult]];
     [results addObjectsFromArray:[self getRakutenResult]];
@@ -61,7 +65,9 @@
     [as addButtonWithTitle:@"評価件数"];
     [as addButtonWithTitle:@"キャンセル"];
     as.cancelButtonIndex = 4;
-    //as.destructiveButtonIndex = 0;
+    if (lastSortedIndex != -1) {
+        as.destructiveButtonIndex = lastSortedIndex;
+    }
     [as showInView:self.view];
 }
 
@@ -74,6 +80,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.price > b.price;
             }];
+            lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
         case 1:
@@ -81,6 +88,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.hls.hue > b.hls.hue;
             }];
+            lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
         case 2:
@@ -88,6 +96,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.reviewRate < b.reviewRate;
             }];
+            lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
         case 3:
@@ -95,6 +104,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.reviewCount < b.reviewCount;
             }];
+            lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
             
@@ -305,6 +315,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         
         @catch (NSException *e) {
             NSLog(@"catched exception in scrollViewDidScroll()");
+            NSLog(@"results: %@", results);
         }
     }
 }
