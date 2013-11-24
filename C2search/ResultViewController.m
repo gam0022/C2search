@@ -23,6 +23,9 @@
     
     UIImage *imagePlaceholder;
     ImageProcessing *imageProcessing;
+    
+    BOOL isGettingYahooResults;
+    BOOL isGettingRakutenResults;
 }
 
 -(void)awakeFromNib
@@ -48,11 +51,64 @@
     lastSortedIndex = -1;
     
     results = [NSMutableArray array];
-    [results addObjectsFromArray:[self getYahooResult]];
-    [results addObjectsFromArray:[self getRakutenResult]];
+    
+    @try {
+        isGettingYahooResults = NO;
+        isGettingRakutenResults = NO;
+        [self getResults];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"getResults()で例外発生");
+    }
     
     imagePlaceholder = [UIImage imageNamed:@"gam0022_kanji.png"];
     imageProcessing = [ImageProcessing alloc];
+}
+
+- (void)getResults
+{
+    if (isGettingYahooResults || isGettingRakutenResults) {
+        NSLog(@"2重読み込み");
+        return;
+    }
+    
+    // 意味の分からないことに、results が途中で NSArray になることがあるよう
+    if([results isMemberOfClass:[NSArray class]]) {
+        NSLog(@"怪奇現象><");
+        results = [results mutableCopy];
+    }
+    
+    // 非同期で検索を行う
+    dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t q_main = dispatch_get_main_queue();
+    dispatch_async(q_global, ^{
+        isGettingYahooResults = YES;
+        NSMutableArray *yahooResults = [self getYahooResult];
+        // UI操作はメインスレッドで行う
+        dispatch_async(q_main, ^{
+            if(yahooResults.count > 0) {
+                [results addObjectsFromArray:yahooResults];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"Yahoo商品検索で検索結果なし");
+            }
+            isGettingYahooResults = NO;
+        });
+    });
+    dispatch_async(q_global, ^{
+        isGettingRakutenResults = YES;
+        NSMutableArray *rakutenResults = [self getRakutenResult];
+        // UI操作はメインスレッドで行う
+        dispatch_async(q_main, ^{
+            if(rakutenResults.count > 0) {
+                [results addObjectsFromArray:rakutenResults];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"楽天商品検索で検索結果なし");
+            }
+            isGettingRakutenResults = NO;
+        });
+    });
 }
 
 - (IBAction)sort:(id)sender {
@@ -112,7 +168,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             // cancel
             break;
     }
-    
 }
 
 -(NSMutableArray*)getYahooResult
@@ -303,45 +358,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     //一番下までスクロールしたかどうか
     //NSLog(@"indexPath.row: %d", indexPath.row);
     //NSLog(@"results.count: %d", results.count);
-    NSLog(@"results.class: %@", results.class);
+    //NSLog(@"results.class: %@", results.class);
     if(indexPath.row >= results.count - 1)
     {
         @try {
             //まだ表示するコンテンツが存在するか判定し存在するなら取得して表示更新する
-            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            dispatch_queue_t q_main = dispatch_get_main_queue();
-            dispatch_async(q_global, ^{
-                NSMutableArray *yahooResults = [self getYahooResult];
-                // UI操作はメインスレッドで行う
-                dispatch_async(q_main, ^{
-                    if(yahooResults.count > 0) {
-                        [results addObjectsFromArray:yahooResults];
-                        [self.tableView reloadData];
-                    } else {
-                        NSLog(@"Yahoo商品検索で検索結果なし");
-                    }
-                });
-            });
-            dispatch_async(q_global, ^{
-                NSMutableArray *rakutenResults = [self getRakutenResult];
-                // UI操作はメインスレッドで行う
-                dispatch_async(q_main, ^{
-                    if(rakutenResults.count > 0) {
-                        [results addObjectsFromArray:rakutenResults];
-                        [self.tableView reloadData];
-                    } else {
-                        NSLog(@"楽天商品検索で検索結果なし");
-                    }
-                });
-            });
-            
-            // 意味の分からないことに、results が途中で NSArray になることがあるよう
-            if([results isMemberOfClass:[NSArray class]]) {
-                NSLog(@"怪奇現象><");
-                results = [results mutableCopy];
-            }
+            [self getResults];
         }
-        
         @catch (NSException *e) {
             NSLog(@"catched exception in scrollViewDidScroll()");
             NSLog(@"results: %@", results);
