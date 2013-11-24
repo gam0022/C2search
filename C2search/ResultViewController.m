@@ -117,12 +117,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 -(NSMutableArray*)getYahooResult
 {
+    NSMutableArray *yahooResults = [NSMutableArray array];
+    
     if (yahooOffset >= yahooTotal) {
-        return [NSMutableArray array];
+        return yahooResults;
     }
     
     @try {
-        NSMutableArray *yahooResults = [NSMutableArray array];
         NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@&hits=10&offset=%d", appidYahoo, queryEscaped, yahooOffset];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -134,7 +135,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                                    options:NSJSONReadingMutableContainers
                                                                      error:&error];
         if (error != nil) {
-            @throw @"error";
+            NSLog(@"Yahoo商品検索のJSONのパースでエラー発生");
+            return yahooResults;
         }
         
         NSDictionary *resultSet = jsonObject[@"ResultSet"];
@@ -162,18 +164,19 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     @catch (NSException *e) {
         NSLog(@"Yahoo商品検索で例外発生");
-        return [NSMutableArray array];
+        return yahooResults;
     }
 }
 
 -(NSMutableArray*)getRakutenResult
 {
+    NSMutableArray *rakutenResults = [NSMutableArray array];
+    
     if (rakutenOffsetPage >= rakutenTotalPage) {
-        return [NSMutableArray array];
+        return rakutenResults;
     }
     
     @try {
-        NSMutableArray *rakutenResults = [NSMutableArray array];
         NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@&hits=10&page=%d", queryEscaped, appidRakuten, rakutenOffsetPage];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -185,7 +188,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                                    options:NSJSONReadingMutableContainers
                                                                      error:&error];
         if (error != nil) {
-            @throw @"error";
+            NSLog(@"楽天商品検索のJSONのパースでエラー発生");
+            return rakutenResults;
         }
         
         NSArray *objs = jsonObject[@"Items"];
@@ -212,7 +216,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     @catch (NSException *e) {
         NSLog(@"楽天商品検索で例外発生");
-        return [NSMutableArray array];
+        return rakutenResults;
     }
 }
 
