@@ -57,8 +57,9 @@
     as.title = @"ソートの種類を選択してください。";
     [as addButtonWithTitle:@"価格"];
     [as addButtonWithTitle:@"色"];
+    [as addButtonWithTitle:@"評価"];
     [as addButtonWithTitle:@"キャンセル"];
-    as.cancelButtonIndex = 2;
+    as.cancelButtonIndex = 3;
     //as.destructiveButtonIndex = 0;
     [as showInView:self.view];
 }
@@ -76,15 +77,20 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             break;
         case 1:
             // sort by color
-            //NSLog(@"ボタン2");
             results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.hls.hue > b.hls.hue;
             }];
             [self.tableView reloadData];
             break;
         case 2:
+            // sort by rate
+            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+                return a.rate < b.rate;
+            }];
+            [self.tableView reloadData];
+            break;
+        case 3:
             // cancel
-            NSLog(@"ボタン3");
             break;
     }
     
@@ -121,11 +127,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         {
             NSDictionary *obj = objs[[NSString stringWithFormat:@"%d", i]];
             Result *result = [[Result alloc] initWithParams:obj[@"Name"]
+                                                       shop:@"Yahoo"
                                                 description:obj[@"Description"]
                                                       price:[obj[@"Price"][@"_value"] integerValue]
                                                         URL:obj[@"Url"]
                                                    imageURL:obj[@"Image"][@"Small"]
-                                                       shop:@"Yahoo"];
+                                                       rate:[obj[@"Store"][@"Ratings"][@"Rate"] floatValue]];
             [yahoo_results addObject:result];
         }
         yahooOffset += totalResultsReturned;
@@ -168,11 +175,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         {
             NSDictionary *obj = objs[i][@"Item"];
             Result *result = [[Result alloc] initWithParams:obj[@"itemName"]
+                                                       shop:@"楽天"
                                                 description:obj[@"itemCaption"]
                                                       price:[obj[@"itemPrice"] integerValue]
                                                         URL:obj[@"itemUrl"]
                                                    imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]
-                                                       shop:@"楽天"];
+                                                       rate:[obj[@"reviewAverage"] floatValue]];
             [rakuten_results addObject:result];
         }
         ++rakutenOffsetPage;
@@ -205,7 +213,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@", result.price, result.shop];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@ / %1.1f", result.price, result.shop, result.rate];
     if (result.image) {
         cell.imageView.image = result.image;
     } else {

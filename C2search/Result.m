@@ -10,14 +10,15 @@
 
 @implementation Result
 
--(id)initWithParams: (NSString*)name description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL shop:(NSString*)shop
+-(id)initWithParams: (NSString*)name shop:(NSString*)shop description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL rate:(CGFloat)rate
 {
     self.name = name;
+    self.shop = shop;
     self.description = description;
     self.price = price;
     self.itemURL = [NSURL URLWithString:URL];
     self.imageURL = [NSURL URLWithString:imageURL];
-    self.shop = shop;
+    self.rate = rate;
     self.hls = [[HLSColor alloc]initWithHue:360 lightness:0 saturation:0];// 非同期処理で上書きされるまでのダミー
     return self;
 }
