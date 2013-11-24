@@ -238,7 +238,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         NSURL *url = result.itemURL;
         
         DetailViewController *dvc = segue.destinationViewController;
-        dvc.detailItem = url;
+        dvc.itemURL = url;
     }
 }
 

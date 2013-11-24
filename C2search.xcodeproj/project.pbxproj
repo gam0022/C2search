@@ -434,6 +434,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/gam0022/Documents/Xcode/C2search,
+					/Users/gam0022/XCode/C2search,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "C2search/C2search-Prefix.pch";
@@ -451,6 +452,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/gam0022/Documents/Xcode/C2search,
+					/Users/gam0022/XCode/C2search,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "C2search/C2search-Prefix.pch";

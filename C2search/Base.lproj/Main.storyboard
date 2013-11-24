@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ash-ah-ruv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ash-ah-ruv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -156,7 +156,13 @@
                             <constraint firstItem="5rY-J7-g2e" firstAttribute="leading" secondItem="xZV-S3-ykD" secondAttribute="leading" constant="-4" id="cLt-Ve-d4t"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Web" id="Pva-Re-5Ot"/>
+                    <navigationItem key="navigationItem" title="Web" id="Pva-Re-5Ot">
+                        <barButtonItem key="rightBarButtonItem" title="Safari" id="eJ0-Cv-anS">
+                            <connections>
+                                <action selector="openURL:" destination="xXb-yt-0tY" id="FHT-Ft-weZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myWebView" destination="5rY-J7-g2e" id="85Y-KE-j7p"/>
                     </connections>

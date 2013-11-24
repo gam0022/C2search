@@ -12,12 +12,15 @@
 
 - (void)viewDidLoad
 {
-    if (self.detailItem) {
+    if (self.itemURL) {
         self.myWebView.scalesPageToFit = YES;
-        NSURL *url = self.detailItem;
+        NSURL *url = self.itemURL;
         NSURLRequest *req = [NSURLRequest requestWithURL:url];
         [self.myWebView loadRequest:req];
     }
 }
 
+- (IBAction)openURL:(id)sender {
+    [[UIApplication sharedApplication] openURL:self.itemURL];
+}
 @end
