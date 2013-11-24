@@ -122,7 +122,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
     
     @try {
-        NSMutableArray *yahoo_results = [NSMutableArray array];
+        NSMutableArray *yahooResults = [NSMutableArray array];
         NSString *url = [NSString stringWithFormat:@"http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=%@&query=%@&hits=10&offset=%d", appidYahoo, queryEscaped, yahooOffset];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -153,11 +153,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                    imageURL:obj[@"Image"][@"Small"]
                                                  reviewRate:[obj[@"Store"][@"Ratings"][@"Rate"] floatValue]
                                                 reviewCount:[obj[@"Store"][@"Ratings"][@"Count"] integerValue]];
-            [yahoo_results addObject:result];
+            [yahooResults addObject:result];
         }
         yahooOffset += totalResultsReturned;
-        NSLog(@"Yahoo商品検索に成功: %d件", yahoo_results.count);
-        return yahoo_results;
+        NSLog(@"Yahoo商品検索に成功: %d件", yahooResults.count);
+        return yahooResults;
     }
     
     @catch (NSException *e) {
@@ -173,7 +173,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
     
     @try {
-        NSMutableArray *rakuten_results = [NSMutableArray array];
+        NSMutableArray *rakutenResults = [NSMutableArray array];
         NSString *url = [NSString stringWithFormat:@"https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%@&applicationId=%@&hits=10&page=%d", queryEscaped, appidRakuten, rakutenOffsetPage];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -203,11 +203,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                    imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]
                                                  reviewRate:[obj[@"reviewAverage"] floatValue]
                                                 reviewCount:[obj[@"reviewCount"] integerValue]];
-            [rakuten_results addObject:result];
+            [rakutenResults addObject:result];
         }
         ++rakutenOffsetPage;
-        NSLog(@"楽天の検索が成功: %d件", rakuten_results.count);
-        return rakuten_results;
+        NSLog(@"楽天の検索が成功: %d件", rakutenResults.count);
+        return rakutenResults;
     }
     
     @catch (NSException *e) {
@@ -304,16 +304,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     {
         @try {
             //まだ表示するコンテンツが存在するか判定し存在するなら取得して表示更新する
-            NSInteger pre_count = results.count;
-            [results addObjectsFromArray:[self getYahooResult]];
-            if (results.count > pre_count) {
-                [self.tableView reloadData];
-            }
-            pre_count = results.count;
-            [results addObjectsFromArray:[self getRakutenResult]];
-            if (results.count > pre_count) {
-                [self.tableView reloadData];
-            }
+            dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_queue_t q_main = dispatch_get_main_queue();
+            dispatch_async(q_global, ^{
+                NSMutableArray *yahooResults = [self getYahooResult];
+                // UI操作はメインスレッドで行う
+                dispatch_async(q_main, ^{
+                    if(yahooResults.count > 0) {
+                        [results addObjectsFromArray:yahooResults];
+                        [self.tableView reloadData];
+                    } else {
+                        NSLog(@"Yahoo商品検索で検索結果なし");
+                    }
+                });
+            });
+            dispatch_async(q_global, ^{
+                NSMutableArray *rakutenResults = [self getRakutenResult];
+                // UI操作はメインスレッドで行う
+                dispatch_async(q_main, ^{
+                    if(rakutenResults.count > 0) {
+                        [results addObjectsFromArray:rakutenResults];
+                        [self.tableView reloadData];
+                    } else {
+                        NSLog(@"楽天商品検索で検索結果なし");
+                    }
+                });
+            });
         }
         
         @catch (NSException *e) {
