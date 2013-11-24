@@ -18,8 +18,9 @@
 @property (nonatomic) NSInteger price;
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIImage  *image;
-@property (nonatomic) CGFloat rate;// [0 5]
+@property (nonatomic) CGFloat reviewRate;// [0 5]
+@property (nonatomic) NSInteger reviewCount;
 @property (nonatomic, strong) HLSColor *hls;
 
--(id)initWithParams: (NSString*)name shop:(NSString*)shop description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL rate:(CGFloat)rate;
+-(id)initWithParams: (NSString*)name shop:(NSString*)shop description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL reviewRate:(CGFloat)reviewRate reviewCount:(NSInteger)reviewCount;
 @end

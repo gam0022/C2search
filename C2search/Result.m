@@ -10,7 +10,7 @@
 
 @implementation Result
 
--(id)initWithParams: (NSString*)name shop:(NSString*)shop description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL rate:(CGFloat)rate
+-(id)initWithParams: (NSString*)name shop:(NSString*)shop description:(NSString*)description price:(NSInteger)price URL:(NSString*)URL imageURL:(NSString*)imageURL reviewRate:(CGFloat)reviewRate reviewCount:(NSInteger)reviewCount
 {
     self.name = name;
     self.shop = shop;
@@ -18,7 +18,8 @@
     self.price = price;
     self.itemURL = [NSURL URLWithString:URL];
     self.imageURL = [NSURL URLWithString:imageURL];
-    self.rate = rate;
+    self.reviewRate = reviewRate;
+    self.reviewCount = reviewCount;
     self.hls = [[HLSColor alloc]initWithHue:360 lightness:0 saturation:0];// 非同期処理で上書きされるまでのダミー
     return self;
 }

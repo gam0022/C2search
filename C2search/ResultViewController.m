@@ -57,9 +57,10 @@
     as.title = @"ソートの種類を選択してください。";
     [as addButtonWithTitle:@"価格"];
     [as addButtonWithTitle:@"色"];
-    [as addButtonWithTitle:@"評価"];
+    [as addButtonWithTitle:@"評価平均"];
+    [as addButtonWithTitle:@"評価件数"];
     [as addButtonWithTitle:@"キャンセル"];
-    as.cancelButtonIndex = 3;
+    as.cancelButtonIndex = 4;
     //as.destructiveButtonIndex = 0;
     [as showInView:self.view];
 }
@@ -83,13 +84,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             [self.tableView reloadData];
             break;
         case 2:
-            // sort by rate
+            // sort by reviewRate
             results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
-                return a.rate < b.rate;
+                return a.reviewRate < b.reviewRate;
             }];
             [self.tableView reloadData];
             break;
         case 3:
+            // sort by reviewCount
+            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+                return a.reviewCount < b.reviewCount;
+            }];
+            [self.tableView reloadData];
+            break;
+            
+        case 4:
             // cancel
             break;
     }
@@ -132,7 +141,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                       price:[obj[@"Price"][@"_value"] integerValue]
                                                         URL:obj[@"Url"]
                                                    imageURL:obj[@"Image"][@"Small"]
-                                                       rate:[obj[@"Store"][@"Ratings"][@"Rate"] floatValue]];
+                                                 reviewRate:[obj[@"Store"][@"Ratings"][@"Rate"] floatValue]
+                                                reviewCount:[obj[@"Store"][@"Ratings"][@"Count"] integerValue]];
             [yahoo_results addObject:result];
         }
         yahooOffset += totalResultsReturned;
@@ -180,7 +190,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                       price:[obj[@"itemPrice"] integerValue]
                                                         URL:obj[@"itemUrl"]
                                                    imageURL:obj[@"smallImageUrls"][0][@"imageUrl"]
-                                                       rate:[obj[@"reviewAverage"] floatValue]];
+                                                 reviewRate:[obj[@"reviewAverage"] floatValue]
+                                                reviewCount:[obj[@"reviewCount"] integerValue]];
             [rakuten_results addObject:result];
         }
         ++rakutenOffsetPage;
@@ -213,7 +224,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@ / %1.1f", result.price, result.shop, result.rate];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@ / %1.1f(%d件)",
+                                 result.price, result.shop, result.reviewRate, result.reviewCount];
     if (result.image) {
         cell.imageView.image = result.image;
     } else {
