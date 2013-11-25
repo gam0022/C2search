@@ -37,6 +37,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.scrollsToTop = YES;
     
     queryEscaped = (NSString*) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                   (CFStringRef)_query,
