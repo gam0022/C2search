@@ -21,7 +21,8 @@
     
     NSInteger lastSortedIndex;
     
-    UIImage *imagePlaceholder;
+    NSMutableArray *loadingAnimation;
+    
     ImageProcessing *imageProcessing;
     
     BOOL isGettingYahooResults;
@@ -61,8 +62,17 @@
         NSLog(@"getResults()で例外発生");
     }
     
-    imagePlaceholder = [UIImage imageNamed:@"gam0022_kanji.png"];
+    loadingAnimation = [self getLoadingImageView];
     imageProcessing = [ImageProcessing alloc];
+}
+
+-(NSMutableArray*)getLoadingImageView
+{
+    NSMutableArray *animation = [NSMutableArray array];
+    for(int i = 0; i < 12; ++i) {
+        [animation addObject:[UIImage imageNamed:[NSString stringWithFormat:@"load-%d.png", i]]];
+    }
+    return animation;
 }
 
 - (void)getResults
@@ -300,7 +310,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (result.image) {
         cell.imageView.image = result.image;
     } else {
-        cell.imageView.image = imagePlaceholder;
+        // 画像読み込み中のアニメーションを設定
+        cell.imageView.animationImages = loadingAnimation;
+        cell.imageView.animationDuration = 1;
+        cell.imageView.animationRepeatCount = 0;
+        [cell.imageView startAnimating];
+        
         dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_queue_t q_main = dispatch_get_main_queue();
         dispatch_async(q_global, ^{
@@ -310,6 +325,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             // UI操作はメインスレッドで行う
             dispatch_async(q_main, ^{
                 cell.imageView.image = result.image;
+                [cell.imageView stopAnimating];
                 [cell setNeedsLayout];
             });
         });
