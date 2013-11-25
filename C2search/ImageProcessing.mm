@@ -12,15 +12,22 @@
 
 -(HLSColor*)getHLSColorFromUIImage: (UIImage*)image
 {
-    HLSColor *color = [HLSColor alloc];
-    cv::Mat avg(1,1,CV_32FC3), hls(1,1,CV_32FC3);
-    avg = [self getAverageDot:[self cvMatFromUIImage:image]];
-    cv::cvtColor(avg, hls, CV_BGR2HLS);
-    cv::Vec3b dot = hls.at<cv::Vec3b>(0,0);
-    color.hue = dot[0] * 2;
-    color.lightness = dot[1];
-    color.saturation = dot[2];
-    return color;
+    HLSColor *color = [[HLSColor alloc]initWithHue:360 lightness:0 saturation:0];
+    
+    @try {
+        cv::Mat avg(1,1,CV_32FC3), hls(1,1,CV_32FC3);
+        avg = [self getAverageDot:[self cvMatFromUIImage:image]];
+        cv::cvtColor(avg, hls, CV_BGR2HLS);
+        cv::Vec3b dot = hls.at<cv::Vec3b>(0,0);
+        color.hue = dot[0] * 2;
+        color.lightness = dot[1];
+        color.saturation = dot[2];
+        return color;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"OpenCVでの画像処理中にエラー: %@", exception);
+        return color;
+    }
 }
 
 -(cv::Mat)getAverageDot: (cv::Mat)src
