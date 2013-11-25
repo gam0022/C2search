@@ -75,17 +75,11 @@
     return animation;
 }
 
-- (void)getResults
+-(void)getResults
 {
     if (isGettingYahooResults || isGettingRakutenResults) {
         NSLog(@"2重読み込み");
         return;
-    }
-    
-    // 意味の分からないことに、results が途中で NSArray になることがあるよう
-    if([results isMemberOfClass:[NSArray class]]) {
-        NSLog(@"怪奇現象><");
-        results = [results mutableCopy];
     }
     
     // 非同期で検索を行う
@@ -97,6 +91,7 @@
         // UI操作はメインスレッドで行う
         dispatch_async(q_main, ^{
             if(yahooResults.count > 0) {
+                [self forceRestoreResults];
                 [results addObjectsFromArray:yahooResults];
                 [self.tableView reloadData];
             } else {
@@ -111,6 +106,7 @@
         // UI操作はメインスレッドで行う
         dispatch_async(q_main, ^{
             if(rakutenResults.count > 0) {
+                [self forceRestoreResults];
                 [results addObjectsFromArray:rakutenResults];
                 [self.tableView reloadData];
             } else {
@@ -121,7 +117,16 @@
     });
 }
 
-- (IBAction)sort:(id)sender {
+- (void)forceRestoreResults
+{
+    // 意味の分からないことに、results が途中で NSArray になることがあるよう
+    if([results isMemberOfClass:[NSArray class]]) {
+        NSLog(@"怪奇現象><");
+        results = [results mutableCopy];
+    }
+}
+
+-(IBAction)sort:(id)sender {
     UIActionSheet *as = [[UIActionSheet alloc] init];
     as.delegate = self;
     as.title = @"ソートの種類を選択してください。";
