@@ -30,6 +30,12 @@
     self.recognizeView = [[YIPRImageRecognizeView alloc] initWithFrame:rect url:url];
     self.recognizeView.delegate = self;
     self.recognizeView.applicationID = appidYahooYIPR;
+    
+    // recognizeView をタップしたら、背景をタップしたことにする
+    self.recognizeButton.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
+    [self.recognizeView addGestureRecognizer:tapGesture];
+    
     [self.view addSubview:self.recognizeView];
     
     self.capturing = NO;
@@ -162,6 +168,10 @@
                           otherButtonTitles:@"OK", nil];
     [alert show];
     [self setRecognizeButtonDefault];
+}
+
+- (IBAction)backgroundTapped:(id)sender {
+    [self.view endEditing:YES];
 }
 
 @end

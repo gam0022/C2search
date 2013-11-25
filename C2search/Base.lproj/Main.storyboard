@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="gqO-WP-z2N"/>
                         <viewControllerLayoutGuide type="bottom" id="vby-hV-xjS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -63,6 +63,9 @@
                             <constraint firstItem="vby-hV-xjS" firstAttribute="top" secondItem="pT3-Ac-guu" secondAttribute="bottom" constant="21" id="x1k-2V-mId"/>
                             <constraint firstItem="27A-Rl-k3Z" firstAttribute="centerX" secondItem="apu-A1-nYE" secondAttribute="centerX" id="yTb-SR-Z97"/>
                         </constraints>
+                        <connections>
+                            <action selector="backgroundTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uRt-hQ-BqC"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="すごい商品検索" id="s7Q-Bi-30Y"/>
                     <connections>
