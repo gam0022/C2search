@@ -305,6 +305,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Result *result = results[indexPath.row];
     cell.textLabel.text = result.name;
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d円 / %@ / %1.1f(%d件)",
                                  result.price, result.shop, result.reviewRate, result.reviewCount];
     if (result.image) {
