@@ -148,33 +148,33 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
             // sort by price
-            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+            results = [[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.price > b.price;
-            }];
+            }]mutableCopy];
             lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
         case 1:
             // sort by color
-            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+            results = [[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.hls.hue > b.hls.hue;
-            }];
+            }]mutableCopy];
             lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
         case 2:
             // sort by reviewRate
-            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+            results = [[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.reviewRate < b.reviewRate;
-            }];
+            }]mutableCopy];
             lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
         case 3:
             // sort by reviewCount
-            results = (NSMutableArray*)[results sortedArrayUsingComparator:^(Result *a, Result *b) {
+            results = [[results sortedArrayUsingComparator:^(Result *a, Result *b) {
                 return a.reviewCount < b.reviewCount;
-            }];
+            }]mutableCopy];
             lastSortedIndex = buttonIndex;
             [self.tableView reloadData];
             break;
