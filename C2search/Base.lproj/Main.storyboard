@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--2search View Controller - Top-->
+        <!--2search View Controller - すごい商品検索-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="C2searchViewController" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             <constraint firstItem="27A-Rl-k3Z" firstAttribute="centerX" secondItem="apu-A1-nYE" secondAttribute="centerX" id="yTb-SR-Z97"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Top" id="s7Q-Bi-30Y"/>
+                    <navigationItem key="navigationItem" title="すごい商品検索" id="s7Q-Bi-30Y"/>
                     <connections>
                         <outlet property="captureSwitch" destination="w8g-zL-EOZ" id="YLT-7H-Njl"/>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
