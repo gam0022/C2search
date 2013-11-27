@@ -16,6 +16,8 @@
 		A51790FA183F1D0B00E992D6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51790F9183F1D0B00E992D6 /* SystemConfiguration.framework */; };
 		A51790FE1840A85D00E992D6 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51790FD1840A85D00E992D6 /* opencv2.framework */; };
 		A51791011840C69300E992D6 /* HLSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A51791001840C69300E992D6 /* HLSColor.m */; };
+		A56E82CD1846314D006AABBE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A56E82CC1846314D006AABBE /* icon.png */; };
+		A56E82CF1846324F006AABBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A56E82CE1846324F006AABBE /* InfoPlist.strings */; };
 		A5E0B3AB1835D30C00D2CBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AA1835D30C00D2CBC4 /* Foundation.framework */; };
 		A5E0B3AD1835D30C00D2CBC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AC1835D30C00D2CBC4 /* CoreGraphics.framework */; };
 		A5E0B3AF1835D30C00D2CBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AE1835D30C00D2CBC4 /* UIKit.framework */; };
@@ -58,6 +60,8 @@
 		A51790FD1840A85D00E992D6 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		A51790FF1840C69300E992D6 /* HLSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSColor.h; sourceTree = "<group>"; };
 		A51791001840C69300E992D6 /* HLSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSColor.m; sourceTree = "<group>"; };
+		A56E82CC1846314D006AABBE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = misc/icon.png; sourceTree = SOURCE_ROOT; };
+		A56E82CE1846324F006AABBE /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		A5E0B3A71835D30C00D2CBC4 /* C2search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C2search.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B3AA1835D30C00D2CBC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5E0B3AC1835D30C00D2CBC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A56E82CB1846313B006AABBE /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				A56E82CC1846314D006AABBE /* icon.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 		A5E0B39E1835D30C00D2CBC4 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +158,8 @@
 		A5E0B3B01835D30C00D2CBC4 /* C2search */ = {
 			isa = PBXGroup;
 			children = (
+				A56E82CE1846324F006AABBE /* InfoPlist.strings */,
+				A56E82CB1846313B006AABBE /* icons */,
 				A5E0B3B91835D30C00D2CBC4 /* C2searchAppDelegate.h */,
 				A5E0B3BA1835D30C00D2CBC4 /* C2searchAppDelegate.m */,
 				A5E0B3BC1835D30C00D2CBC4 /* Main.storyboard */,
@@ -275,9 +289,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A56E82CD1846314D006AABBE /* icon.png in Resources */,
 				A5E0B3C31835D30C00D2CBC4 /* Images.xcassets in Resources */,
 				A5E0B3B51835D30C00D2CBC4 /* InfoPlist.strings in Resources */,
 				A5E0B3BE1835D30C00D2CBC4 /* Main.storyboard in Resources */,
+				A56E82CF1846324F006AABBE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
