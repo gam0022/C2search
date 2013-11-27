@@ -19,8 +19,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.queryText.delegate = self;
-    
     CGRect rect = self.view.bounds;
     rect.origin.y = 180;
     rect.size.height = rect.size.width;
