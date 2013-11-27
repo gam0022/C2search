@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--2search View Controller - すごい商品検索-->
+        <!--2search View Controller - カメラで商品検索-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="C2searchViewController" sceneMemberID="viewController">
@@ -70,7 +70,7 @@
                             <action selector="backgroundTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uRt-hQ-BqC"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="すごい商品検索" id="s7Q-Bi-30Y"/>
+                    <navigationItem key="navigationItem" title="カメラで商品検索" id="s7Q-Bi-30Y"/>
                     <connections>
                         <outlet property="captureSwitch" destination="w8g-zL-EOZ" id="YLT-7H-Njl"/>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
@@ -92,7 +92,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="KCS-fR-qqR" detailTextLabel="ONz-Vu-NlT" style="IBUITableViewCellStyleSubtitle" id="55Q-b3-bri">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="55Q-b3-bri" id="xON-tJ-xce">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
