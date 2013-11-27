@@ -10,7 +10,7 @@
 #import "ResultViewController.h"
 #import <YIPRImageRecognizer/YIPRImageRecognizer.h>
 
-@interface C2searchViewController : UIViewController <UITextFieldDelegate,YIPRImageRecognizeDelegate>
+@interface C2searchViewController : UIViewController <YIPRImageRecognizeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *queryText;
 @property (nonatomic, strong) YIPRImageRecognizeView* recognizeView;

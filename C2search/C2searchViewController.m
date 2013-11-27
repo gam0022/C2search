@@ -53,9 +53,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+- (IBAction)queryDidEndOnExit:(id)sender {
     [self.view endEditing:YES];
-    return YES;
+    [self performSegueWithIdentifier:@"showResult" sender:self];
 }
 
 - (void)setRecognizeButtonDefault
