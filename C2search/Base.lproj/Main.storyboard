@@ -26,9 +26,9 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27A-Rl-k3Z">
-                                <rect key="frame" x="136" y="112" width="48" height="30"/>
+                                <rect key="frame" x="108" y="112" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
+                                <state key="normal" title="キーワード検索">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -44,9 +44,9 @@
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pT3-Ac-guu">
-                                <rect key="frame" x="214" y="517" width="72" height="30"/>
+                                <rect key="frame" x="226" y="517" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Recognize">
+                                <state key="normal" title="画像認識">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -82,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="672" y="101"/>
         </scene>
-        <!--Result View Controller - Result-->
+        <!--Result View Controller - 結果-->
         <scene sceneID="5db-qe-FXj">
             <objects>
                 <tableViewController id="3f4-Ri-HOk" customClass="ResultViewController" sceneMemberID="viewController">
@@ -124,8 +124,8 @@
                             <outlet property="delegate" destination="3f4-Ri-HOk" id="plF-Tf-z7d"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Result" id="ALm-pn-ggd">
-                        <barButtonItem key="rightBarButtonItem" title="Sort" id="a8D-fV-gyy">
+                    <navigationItem key="navigationItem" title="結果" id="ALm-pn-ggd">
+                        <barButtonItem key="rightBarButtonItem" title="ソート" id="a8D-fV-gyy">
                             <connections>
                                 <action selector="sort:" destination="3f4-Ri-HOk" id="EoA-0n-mQf"/>
                             </connections>
@@ -136,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="1094" y="101"/>
         </scene>
-        <!--Detail View Controller - Web-->
+        <!--Detail View Controller - ウェブ-->
         <scene sceneID="uQg-NR-2hj">
             <objects>
                 <viewController id="xXb-yt-0tY" customClass="DetailViewController" sceneMemberID="viewController">
@@ -162,7 +162,7 @@
                             <constraint firstItem="5rY-J7-g2e" firstAttribute="leading" secondItem="xZV-S3-ykD" secondAttribute="leading" constant="-4" id="cLt-Ve-d4t"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Web" id="Pva-Re-5Ot">
+                    <navigationItem key="navigationItem" title="ウェブ" id="Pva-Re-5Ot">
                         <barButtonItem key="rightBarButtonItem" title="Safari" id="eJ0-Cv-anS">
                             <connections>
                                 <action selector="openURL:" destination="xXb-yt-0tY" id="FHT-Ft-weZ"/>

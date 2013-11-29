@@ -41,8 +41,8 @@
     
     buttonTintDefault = self.recognizeButton.tintColor;
     buttonTintSelected = [UIColor grayColor];
-    recognizeLabelTextDefault = @"Recognize";
-    recogniziLabelTextSelected = @"Recognizing";
+    recognizeLabelTextDefault = @"画像認識";
+    recogniziLabelTextSelected = @"認識中...";
 }
 
 - (void)didReceiveMemoryWarning
