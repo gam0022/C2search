@@ -35,14 +35,15 @@
     [self.recognizeView addGestureRecognizer:tapGesture];
     
     [self.view addSubview:self.recognizeView];
-    
-    self.capturing = NO;
     self.recognizeButton.enabled = NO;
     
     buttonTintDefault = self.recognizeButton.tintColor;
     buttonTintSelected = [UIColor grayColor];
     recognizeLabelTextDefault = @"画像認識";
     recogniziLabelTextSelected = @"認識中...";
+    
+    self.captureSwitch.on = YES;
+    [self switch_capture:self.captureSwitch];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,23 +111,22 @@
 }
 
 - (IBAction)switch_capture:(id)sender {
-    UISwitch *capture_switch = sender;
-    self.capturing = self.recognizeButton.enabled = capture_switch.on;
+    self.recognizeButton.enabled = self.captureSwitch.on;
     
-    if (self.capturing) {
+    if (self.captureSwitch.on) {
         NSLog(@"start capturing");
         NSError* error = nil;
         [self.recognizeView startCapture:&error];
         if (error) {
             NSLog(@"%@", error);
-            self.capturing = NO;
+            self.captureSwitch.on = NO;
         }
     } else {
         NSLog(@"stop capturing");
         [self.recognizeView stopCapture];
         [self setRecognizeButtonDefault];
     }
-    self.recognizeView.hidden = !self.capturing;
+    self.recognizeView.hidden = !self.captureSwitch.on;
 }
 
 ///YIPRImageRecognizeDelegateの認識成功時のデリゲートメソッドの実装

@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *captureSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *recognizeButton;
 
-@property (nonatomic) BOOL capturing;
-
 - (IBAction)recognize:(id)sender;
 - (IBAction)switch_capture:(id)sender;
 
