@@ -30,6 +30,37 @@
     }
 }
 
+-(UIImage*)gouseiImage:(UIImage*)sourceImage
+          composeImage:(UIImage*)composeImage
+                 width:(float)width
+                height:(float)height
+{
+    
+    // グラフィックスコンテキストを作る
+    CGSize size = { width, height };
+    UIGraphicsBeginImageContext(size);
+    
+    //元画像を描画
+    CGRect rect;
+    rect.origin = CGPointZero;
+    rect.size = size;
+    [sourceImage drawInRect:rect];
+    
+    //重ね合わせる画像を描画
+    rect.origin = CGPointMake(width*0.6, height*0.6);
+    rect.size = CGSizeMake(width*0.4, height*0.4);
+    [composeImage drawInRect:rect];
+    
+    // 描画した画像を取得する
+    UIImage* shrinkedImage;
+    shrinkedImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return shrinkedImage;
+    
+}
+
 -(cv::Mat)getAverageDot: (cv::Mat)src
 {
     cv::Mat m1, m2;

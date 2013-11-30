@@ -27,6 +27,10 @@
     
     BOOL isGettingYahooResults;
     BOOL isGettingRakutenResults;
+    
+    UIImage *yahooIcon;
+    UIImage *rakutenIcon;
+    NSDictionary *shopIconDictionary;
 }
 
 -(void)awakeFromNib
@@ -51,6 +55,11 @@
     rakutenTotalPage = 2;
     
     lastSortedIndex = -1;
+    
+    // ショップのアイコンを設定
+    yahooIcon = [UIImage imageNamed:@"yahoo.png"];
+    rakutenIcon = [UIImage imageNamed:@"rakuten.png"];
+    shopIconDictionary = @{@"Yahoo":yahooIcon, @"楽天": rakutenIcon};
     
     results = [NSMutableArray array];
     
@@ -326,12 +335,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_queue_t q_main = dispatch_get_main_queue();
         dispatch_async(q_global, ^{
-            result.image = [UIImage imageWithData:[NSData dataWithContentsOfURL: result.imageURL]];
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: result.imageURL]];
             // 商品画像の平均色のHLSを計算する
-            result.hls = [imageProcessing getHLSColorFromUIImage: result.image];
+            result.hls = [imageProcessing getHLSColorFromUIImage: image];
             // UI操作はメインスレッドで行う
             dispatch_async(q_main, ^{
-                cell.imageView.image = result.image;
+                cell.imageView.image = [imageProcessing gouseiImage:image
+                                                       composeImage:shopIconDictionary[result.shop]
+                                                              width:128
+                                                             height:128];
                 [cell.imageView stopAnimating];
                 [cell setNeedsLayout];
             });

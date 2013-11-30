@@ -11,4 +11,8 @@
 
 @interface ImageProcessing : NSObject
 -(HLSColor*)getHLSColorFromUIImage: (UIImage*)image;
+-(UIImage*)gouseiImage:(UIImage*)sourceImage
+          composeImage:(UIImage*)composeImage
+                 width:(float)width
+                height:(float)height;
 @end

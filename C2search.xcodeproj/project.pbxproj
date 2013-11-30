@@ -18,6 +18,8 @@
 		A51791011840C69300E992D6 /* HLSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A51791001840C69300E992D6 /* HLSColor.m */; };
 		A56E82CD1846314D006AABBE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A56E82CC1846314D006AABBE /* icon.png */; };
 		A56E82CF1846324F006AABBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A56E82CE1846324F006AABBE /* InfoPlist.strings */; };
+		A5B977D71849BD570027811F /* yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B977D61849BD570027811F /* yahoo.png */; };
+		A5B977D91849C5CA0027811F /* rakuten.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B977D81849C5CA0027811F /* rakuten.png */; };
 		A5E0B3AB1835D30C00D2CBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AA1835D30C00D2CBC4 /* Foundation.framework */; };
 		A5E0B3AD1835D30C00D2CBC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AC1835D30C00D2CBC4 /* CoreGraphics.framework */; };
 		A5E0B3AF1835D30C00D2CBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0B3AE1835D30C00D2CBC4 /* UIKit.framework */; };
@@ -62,6 +64,8 @@
 		A51791001840C69300E992D6 /* HLSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSColor.m; sourceTree = "<group>"; };
 		A56E82CC1846314D006AABBE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = misc/icon.png; sourceTree = SOURCE_ROOT; };
 		A56E82CE1846324F006AABBE /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A5B977D61849BD570027811F /* yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yahoo.png; path = misc/shop_icons/yahoo.png; sourceTree = SOURCE_ROOT; };
+		A5B977D81849C5CA0027811F /* rakuten.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rakuten.png; path = misc/shop_icons/rakuten.png; sourceTree = SOURCE_ROOT; };
 		A5E0B3A71835D30C00D2CBC4 /* C2search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C2search.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E0B3AA1835D30C00D2CBC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5E0B3AC1835D30C00D2CBC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +120,8 @@
 		A56E82CB1846313B006AABBE /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				A5B977D61849BD570027811F /* yahoo.png */,
+				A5B977D81849C5CA0027811F /* rakuten.png */,
 				A56E82CC1846314D006AABBE /* icon.png */,
 			);
 			name = icons;
@@ -289,6 +295,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B977D71849BD570027811F /* yahoo.png in Resources */,
+				A5B977D91849C5CA0027811F /* rakuten.png in Resources */,
 				A56E82CD1846314D006AABBE /* icon.png in Resources */,
 				A5E0B3C31835D30C00D2CBC4 /* Images.xcassets in Resources */,
 				A5E0B3B51835D30C00D2CBC4 /* InfoPlist.strings in Resources */,
