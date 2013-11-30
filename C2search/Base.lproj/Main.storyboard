@@ -53,6 +53,10 @@
                                     <action selector="recognize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4sE-15-yZk"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000027" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2w-6X-k3d">
+                                <rect key="frame" x="120" y="300" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -75,6 +79,7 @@
                         <outlet property="captureSwitch" destination="w8g-zL-EOZ" id="YLT-7H-Njl"/>
                         <outlet property="queryText" destination="apu-A1-nYE" id="oFo-zc-zJE"/>
                         <outlet property="recognizeButton" destination="pT3-Ac-guu" id="x9H-YR-WQG"/>
+                        <outlet property="recognizingProgress" destination="j2w-6X-k3d" id="4pQ-mw-omD"/>
                         <segue destination="3f4-Ri-HOk" kind="push" identifier="showResult" id="IHR-ec-Xjl"/>
                     </connections>
                 </viewController>
@@ -82,7 +87,7 @@
             </objects>
             <point key="canvasLocation" x="672" y="101"/>
         </scene>
-        <!--Result View Controller - 結果-->
+        <!--Result View Controller - 検索結果-->
         <scene sceneID="5db-qe-FXj">
             <objects>
                 <tableViewController id="3f4-Ri-HOk" customClass="ResultViewController" sceneMemberID="viewController">
@@ -124,7 +129,7 @@
                             <outlet property="delegate" destination="3f4-Ri-HOk" id="plF-Tf-z7d"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="結果" id="ALm-pn-ggd">
+                    <navigationItem key="navigationItem" title="検索結果" id="ALm-pn-ggd">
                         <barButtonItem key="rightBarButtonItem" title="並び替え" id="a8D-fV-gyy">
                             <connections>
                                 <action selector="sort:" destination="3f4-Ri-HOk" id="EoA-0n-mQf"/>

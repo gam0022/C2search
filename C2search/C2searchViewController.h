@@ -16,6 +16,7 @@
 @property (nonatomic, strong) YIPRImageRecognizeView* recognizeView;
 @property (weak, nonatomic) IBOutlet UISwitch *captureSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *recognizeButton;
+@property (weak, nonatomic) IBOutlet UIImageView *recognizingProgress;
 
 - (IBAction)recognize:(id)sender;
 - (IBAction)switch_capture:(id)sender;

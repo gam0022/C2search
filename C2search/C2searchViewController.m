@@ -37,6 +37,17 @@
     [self.view addSubview:self.recognizeView];
     self.recognizeButton.enabled = NO;
     
+    NSMutableArray *loadingAnimation = [self getLoadingImageView];
+    self.recognizingProgress.animationImages = loadingAnimation;
+    self.recognizingProgress.animationDuration = 1;
+    self.recognizingProgress.animationRepeatCount = 0;
+    [self.view bringSubviewToFront:self.recognizingProgress];
+    //CGPoint center = self.recognizingProgress.center;
+    //center.y = 180 + self.recognizeView.bounds.size.height / 2;
+    //self.recognizingProgress.center = center;
+    //[self.recognizingProgress setNeedsDisplay];
+    self.recognizingProgress.hidden = YES;
+    
     buttonTintDefault = self.recognizeButton.tintColor;
     buttonTintSelected = [UIColor grayColor];
     recognizeLabelTextDefault = @"画像認識";
@@ -52,6 +63,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSMutableArray*)getLoadingImageView
+{
+    NSMutableArray *animation = [NSMutableArray array];
+    for(int i = 0; i < 12; ++i) {
+        [animation addObject:[UIImage imageNamed:[NSString stringWithFormat:@"load-%d.png", i]]];
+    }
+    return animation;
+}
+
+
 - (IBAction)queryDidEndOnExit:(id)sender {
     [self.view endEditing:YES];
     [self performSegueWithIdentifier:@"showResult" sender:self];
@@ -61,12 +82,16 @@
 {
     [self.recognizeButton setTintColor:buttonTintDefault];
     [self.recognizeButton setTitle:recognizeLabelTextDefault forState:UIControlStateNormal];
+    self.recognizingProgress.hidden = YES;
+    [self.recognizingProgress stopAnimating];
 }
 
 - (void)setRecognizeButtonSelected
 {
     [self.recognizeButton setTintColor:buttonTintSelected];
     [self.recognizeButton setTitle:recogniziLabelTextSelected forState:UIControlStateNormal];
+    self.recognizingProgress.hidden = NO;
+    [self.recognizingProgress startAnimating];
 }
 
 - (IBAction)search:(id)sender {
