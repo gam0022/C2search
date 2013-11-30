@@ -125,7 +125,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="結果" id="ALm-pn-ggd">
-                        <barButtonItem key="rightBarButtonItem" title="ソート" id="a8D-fV-gyy">
+                        <barButtonItem key="rightBarButtonItem" title="並び替え" id="a8D-fV-gyy">
                             <connections>
                                 <action selector="sort:" destination="3f4-Ri-HOk" id="EoA-0n-mQf"/>
                             </connections>

@@ -47,8 +47,8 @@
     [sourceImage drawInRect:rect];
     
     //重ね合わせる画像を描画
-    rect.origin = CGPointMake(width*0.6, height*0.6);
-    rect.size = CGSizeMake(width*0.4, height*0.4);
+    rect.origin = CGPointMake(width*0.7, height*0.7);
+    rect.size = CGSizeMake(width*0.3, height*0.3);
     [composeImage drawInRect:rect];
     
     // 描画した画像を取得する
