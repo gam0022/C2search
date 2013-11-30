@@ -338,13 +338,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: result.imageURL]];
             // 商品画像の平均色のHLSを計算する
             result.hls = [imageProcessing getHLSColorFromUIImage: image];
+            result.image = [imageProcessing gouseiImage:image
+                                                   composeImage:shopIconDictionary[result.shop]
+                                                          width:128
+                                                         height:128];
             // UI操作はメインスレッドで行う
             dispatch_async(q_main, ^{
-                cell.imageView.image = [imageProcessing gouseiImage:image
-                                                       composeImage:shopIconDictionary[result.shop]
-                                                              width:128
-                                                             height:128];
                 [cell.imageView stopAnimating];
+                cell.imageView.image = result.image;
                 [cell setNeedsLayout];
             });
         });
