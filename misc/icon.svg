@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 16.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.2"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="24px"
+   height="24px"
+   viewBox="0 0 24 24"
+   xml:space="preserve"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="icon.svg"><metadata
+   id="metadata9"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs7" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1391"
+   inkscape:window-height="856"
+   id="namedview5"
+   showgrid="false"
+   inkscape:zoom="18.483968"
+   inkscape:cx="12.536279"
+   inkscape:cy="6.2725386"
+   inkscape:window-x="49"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<rect
+   style="fill:#ff00ff"
+   id="rect2998"
+   width="35.544315"
+   height="32.514664"
+   x="-4.4362769"
+   y="-1.4815421" /><rect
+   id="rect2996"
+   width="25.617825"
+   height="25.617825"
+   x="0.86561507"
+   y="1.6282322"
+   style="fill:#ffffff"
+   inkscape:export-filename="/Users/gam0022/XCode/C2search/misc/icon.png"
+   inkscape:export-xdpi="421.58145"
+   inkscape:export-ydpi="421.58145" /><path
+   d="M 20.271325,5.9534782 H 18.77668 l -0.942402,-0.9424 c -0.545648,-0.54565 -1.503126,-0.9424 -2.274953,-0.9424 h -3.769598 c -0.771824,0 -1.729303,0.39675 -2.274952,0.9424 l -0.9423999,0.9424 H 7.0777289 c -1.5587293,0 -2.8271994,1.26847 -2.8271994,2.827199 v 7.5391978 c 0,1.55873 1.2684701,2.8272 2.8271994,2.8272 H 20.271325 c 1.558729,0 2.8272,-1.26847 2.8272,-2.8272 V 8.7806772 c 0,-1.558729 -1.268471,-2.827199 -2.8272,-2.827199 z m -6.596799,9.4239968 c -1.821658,0 -3.298398,-1.477682 -3.298398,-3.298398 0,-1.822602 1.47674,-3.2983998 3.298398,-3.2983998 1.821659,0 3.2984,1.4757978 3.2984,3.2983998 0,1.820716 -1.476741,3.298398 -3.2984,3.298398 z m 5.654399,-4.430221 c -0.677585,0 -1.225119,-0.546591 -1.225119,-1.2241768 0,-0.677585 0.547534,-1.226062 1.225119,-1.226062 0.677586,0 1.22512,0.548477 1.22512,1.226062 0,0.6775858 -0.547534,1.2241768 -1.22512,1.2241768 z"
+   id="path3"
+   inkscape:connector-curvature="0" />
+<text
+   xml:space="preserve"
+   style="font-size:5.74024677px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New"
+   x="2.1497259"
+   y="25.42964"
+   id="text2986"
+   sodipodi:linespacing="125%"><tspan
+     sodipodi:role="line"
+     id="tspan2994"
+     x="2.1497259"
+     y="25.42964">商品検索</tspan></text>
+</svg>

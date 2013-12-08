@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="img/icon.png">
+
+<title>カメラで商品検索 C2search</title>
+
+<!-- Bootstrap core CSS -->
+<link href="dist/css/bootstrap.css" rel="stylesheet">
+
+<!-- Just for debugging purposes. Don't actually copy this line! -->
+<!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+<!-- Custom styles for this template -->
+<link href="carousel.css" rel="stylesheet">
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+<div class="navbar-wrapper">
+  <div class="container">
+
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">カメラで商品検索</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <!--li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+            </li-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Carousel
+    ================================================== -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="img/search.png" alt="画像による検索">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>画像認識による検索</h1>
+          <p>タイトルが長い本や名前を忘れてしまった商品も簡単に検索できます。</p>
+          <p>もちろん、普通のキーワード検索も可能です。</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/result.png" alt="横断検索">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>横断検索</h1>
+          <p>Yahooショッピングと楽天市場から商品を横断検索します。</p>
+          <p>商品の情報の読み込みは非同期で行うので、ストレスなく操作できます。</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/color.png" alt="色によるソート">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>色によるソート</h1>
+          <p>検索結果を色相によってソートできるので、好きな色の商品を簡単に見つかります。</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/sort.png" alt="充実した機能">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>充実した機能</h1>
+          <p>価格や評価などの様々な方法で商品をソートできます。</p>
+          <p>最後のアイテムを表示したら自動的に次の検索結果を読み込むので便利です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div><!-- /.carousel -->
+
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+
+  <!-- START THE FEATURETTES -->
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette" id="about">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">画像認識 × 横断検索</h2>
+      <p class="lead">画像認識によってカメラで商品検索ができるアプリです。</p>
+      <p class="lead">Yahooショッピングと楽天市場による本格的な横断検索もできます。</p>
+      <p class="lead">OpenCVによる色によるソート機能も備わっています。</p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-responsive" src="img/icon_large.png" alt="カメラで商品検索">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- /END THE FEATURETTES -->
+
+  <!-- FOOTER -->
+  <footer>
+    <p style="text-align:center">&copy; 2013 <a href="http://gam0022.net">gam0022</a></p>
+  </footer>
+
+
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="docs-assets/js/holder.js"></script>
+</body>
+</html>

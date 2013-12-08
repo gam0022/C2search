@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="drawing.svg">
+  <defs
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       id="filter4036">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.5208813"
+         id="feGaussianBlur4038" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.81075233"
+     inkscape:cx="1629.7955"
+     inkscape:cy="720.43703"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1391"
+     inkscape:window-height="856"
+     inkscape:window-x="49"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       y="-84.209251"
+       x="54.285706"
+       id="image3167"
+       xlink:href="file:///Users/gam0022/Desktop/c2search/search_o.jpg"
+       height="1136"
+       width="640"
+       inkscape:export-filename="/Users/gam0022/Desktop/c2search/search_o.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       y="240.93362"
+       x="-79.999992"
+       id="image3229"
+       xlink:href="file:///Users/gam0022/Desktop/c2search/item.jpg"
+       height="680"
+       width="888.57141" />
+    <rect
+       style="fill:#363636;fill-opacity:1;opacity:0.04741379"
+       id="rect4000"
+       width="1160"
+       height="662.85712"
+       x="-142.85715"
+       y="263.79074" />
+    <image
+       y="12.375818"
+       x="1700.4874"
+       id="image3265"
+       xlink:href="file:///Users/gam0022/Desktop/c2search/item.jpg"
+       height="330.2944"
+       width="239.62535"
+       transform="matrix(0.99755541,0.06987997,-0.06987997,0.99755541,0,0)"
+       style="filter:url(#filter4036)" />
+    <image
+       y="57.37727"
+       x="1280.8938"
+       id="image3135"
+       xlink:href="file:///Users/gam0022/Desktop/c2search/seach_pre.png"
+       height="600"
+       width="800"
+       inkscape:export-filename="/Users/gam0022/Desktop/c2search/save/search.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>

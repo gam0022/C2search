@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg3005"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="images.svg">
+  <defs
+     id="defs3007">
+    <filter
+       inkscape:collect="always"
+       id="filter4249">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.9509549"
+         id="feGaussianBlur4251" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4985">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.6147418"
+         id="feGaussianBlur4987" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.83420696"
+     inkscape:cx="1813.1296"
+     inkscape:cy="509.31791"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1391"
+     inkscape:window-height="856"
+     inkscape:window-x="49"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3010">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       y="45.396664"
+       x="-2376.2068"
+       id="image3284"
+       xlink:href="file:///Users/gam0022/Desktop/IMG_1522.jpg"
+       height="1136"
+       width="640"
+       inkscape:export-filename="/Users/gam0022/Desktop/search.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ececec;fill-rule:evenodd;stroke:none"
+       id="rect3287"
+       width="674.20062"
+       height="646.89655"
+       x="-2394.3574"
+       y="405.46561" />
+    <image
+       y="429.78049"
+       x="-2275.571"
+       id="image3107"
+       xlink:href="file:///Users/gam0022/Desktop/8973072885_b5380078d8_o.jpg"
+       height="561.15985"
+       width="432.7016" />
+    <image
+       width="245.68306"
+       height="318.62018"
+       xlink:href="file:///Users/gam0022/Desktop/8973072885_b5380078d8_o.jpg"
+       id="image4227"
+       x="388.6633"
+       y="1205.2062"
+       transform="matrix(0.98395895,0.01219455,-0.01219455,0.98395895,-183.74128,38.35073)"
+       style="filter:url(#filter4249)" />
+    <image
+       y="1191.9653"
+       x="-168.31725"
+       id="image4189"
+       xlink:href="file:///Users/gam0022/Xcode/C2search/misc/images/productshot_search.png"
+       height="600"
+       width="800"
+       inkscape:export-filename="/Users/gam0022/Xcode/C2search/misc/images/productshot_search_2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       y="-246.17902"
+       x="517.2002"
+       id="image4632"
+       xlink:href="file:///Users/gam0022/Xcode/C2search/misc/images/IMG_1526.jpg"
+       height="1136"
+       width="640"
+       inkscape:export-filename="/Users/gam0022/Xcode/C2search/misc/images/search_original.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="114.87114"
+       x="506.27573"
+       height="646.89655"
+       width="674.20062"
+       id="rect4635"
+       style="fill:#f9f9f9;fill-rule:evenodd;stroke:none" />
+    <image
+       y="148.4335"
+       x="656.55121"
+       id="image4870"
+       xlink:href="file:///Users/gam0022/Xcode/C2search/misc/images/oyasumi.jpg"
+       height="576.54083"
+       width="400.69589" />
+    <image
+       width="253.28526"
+       height="364.43924"
+       xlink:href="file:///Users/gam0022/Xcode/C2search/misc/images/oyasumi.jpg"
+       id="image4967"
+       x="1960.2562"
+       y="197.90215"
+       transform="matrix(0.99930374,0.03731005,-0.03731005,0.99930374,-4.3919405,19.440418)"
+       style="filter:url(#filter4985)" />
+    <image
+       y="249.97131"
+       x="1556.3046"
+       id="image4964"
+       xlink:href="file:///Users/gam0022/Xcode/C2search/misc/images/productshot_search_.png"
+       height="600"
+       width="800"
+       inkscape:export-filename="/Users/gam0022/Xcode/C2search/misc/images/productshot_search_2_.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
